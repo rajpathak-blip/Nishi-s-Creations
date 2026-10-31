@@ -164,29 +164,16 @@ window.openQuickView = function(productId) {
   modal.classList.add('active');
 };
 
-// Logo Switcher (Light Logo vs Dark Logo)
-window.switchHeaderLogo = function(theme) {
-  const logoImg = document.getElementById('header-brand-logo');
-  const btnLight = document.getElementById('btn-switch-light');
-  const btnDark = document.getElementById('btn-switch-dark');
+// Quick Consultation Form Submission to WhatsApp
+window.submitQuickConsultation = function() {
+  const category = document.getElementById('quick-visit-category')?.value || 'Custom Stitching';
+  const name = document.getElementById('quick-visit-name')?.value.trim();
+  const time = document.getElementById('quick-visit-time')?.value || 'Boutique Hours';
 
-  if (!logoImg) return;
+  let message = `Namaste Nishi's Creations! 🙏\nI would like to schedule a boutique visit for: *${category}*.\n`;
+  if (name) message += `Customer Name: ${name}\n`;
+  message += `Preferred Timing: ${time}\nPlease confirm available appointment slot. Thank you!`;
 
-  if (theme === 'dark') {
-    logoImg.src = '/assets/logo-dark.jpg';
-    if (btnLight) btnLight.classList.remove('active');
-    if (btnDark) btnDark.classList.add('active');
-    localStorage.setItem('nishi_logo_theme', 'dark');
-  } else {
-    logoImg.src = '/assets/logo-light.jpg';
-    if (btnLight) btnLight.classList.add('active');
-    if (btnDark) btnDark.classList.remove('active');
-    localStorage.setItem('nishi_logo_theme', 'light');
-  }
+  const url = `https://wa.me/919516482651?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
 };
-
-// Initialize logo preference on load
-document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('nishi_logo_theme') || 'light';
-  window.switchHeaderLogo(saved);
-});

@@ -733,7 +733,7 @@ function renderStudioCanvas() {
     ctx.font = '700 36px "Plus Jakarta Sans", sans-serif';
     ctx.letterSpacing = '2px';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText("📞 6260808658 • 💬 WhatsApp: 9516482651", targetWidth / 2, footerY + 48);
+    ctx.fillText("📞 6260808658 • 💬 WhatsApp Orders Available", targetWidth / 2, footerY + 48);
 
     if (state.studio.addressStrip) {
       ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';

@@ -24,11 +24,11 @@
       <span>•</span>
       <span><i class="fa-solid fa-phone"></i> Call: 6260808658</span>
       <span>•</span>
-      <span><i class="fa-brands fa-whatsapp"></i> WhatsApp: 9516482651</span>
+      <span><i class="fa-brands fa-whatsapp"></i> WhatsApp Orders & Custom Stitching</span>
     </div>
     <div class="top-bar-right">
       <a href="https://wa.me/919516482651?text=Hello%20Nishi's%20Creations,%20I%20would%20like%20to%20book%20a%20stitching%20appointment!" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp (9516482651)
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
       </a>
     </div>
   </aside>
@@ -44,22 +44,22 @@
         </a>
       </div>
 
-      <!-- Center: Prominent Full Brand Logo with Light / Dark switcher -->
+      <!-- Center: Brand Identity per SS1 (Enlarged HD Light Logo Emblem + Typography) -->
       <div class="nav-brand-container">
         <a href="/" class="nav-brand" title="Nishi's Creations Designer Wear">
-          <img src="/assets/logo-light.jpg" alt="Nishi's Creations Designer Wear" class="nav-brand-img" id="header-brand-logo">
+          <div class="nav-brand-img-wrap">
+            <img src="/assets/logo-light.jpg" alt="Nishi's Creations" class="nav-brand-img" id="header-brand-logo">
+          </div>
+          <span class="nav-brand-title">NISHI’S CREATIONS</span>
+          <span class="nav-brand-sub">DESIGNER WEAR • INDORE</span>
         </a>
-        <div class="logo-theme-switcher" title="Switch between Light & Dark logo">
-          <button type="button" class="btn-logo-switch active" id="btn-switch-light" onclick="switchHeaderLogo('light')">☀️ Light Logo</button>
-          <button type="button" class="btn-logo-switch" id="btn-switch-dark" onclick="switchHeaderLogo('dark')">🌙 Dark Logo</button>
-        </div>
       </div>
 
-      <!-- Right Actions: WhatsApp (9516482651) & Admin Portal -->
+      <!-- Right Actions: WhatsApp & Admin Portal (Number hidden from UI, active in backend) -->
       <div class="nav-actions-right">
         <a href="https://wa.me/919516482651" target="_blank" class="btn-whatsapp-pill" title="Chat on WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
-          <span>WhatsApp (9516482651)</span>
+          <span>WhatsApp</span>
         </a>
         <a href="/admin" class="btn-admin-link" title="Open Boutique Admin Portal">
           <i class="fa-solid fa-sliders"></i>
@@ -196,7 +196,7 @@
             <i class="fa-brands fa-whatsapp"></i>
             <div>
               <strong>WhatsApp Orders & Inquiries</strong>
-              <span>+91 9516482651</span>
+              <span>Instant Chat & Design Updates</span>
             </div>
           </div>
           <div class="info-item">
@@ -216,12 +216,63 @@
         </div>
 
         <a href="https://wa.me/919516482651?text=Namaste!%20I%20would%20like%20to%20visit%20Nishi's%20Creations%20for%20an%20appointment." target="_blank" class="btn-hero-white" style="background: #121214; color: #fff;">
-          <i class="fa-brands fa-whatsapp"></i> Book Appointment on WhatsApp (9516482651)
+          <i class="fa-brands fa-whatsapp"></i> Book Appointment on WhatsApp
         </a>
       </div>
 
-      <div style="text-align: center;">
-        <img src="/assets/appointment-card.jpg" alt="Nishi's Creations Appointment Details" class="visit-card-preview">
+      <!-- Right Column: Interactive Consultation & Atelier Visit Card (Replaces static black Screenshot-2) -->
+      <div class="consultation-card-wrapper">
+        <div class="consultation-booking-card">
+          <div class="consultation-card-header">
+            <span class="consultation-tag"><i class="fa-solid fa-gem"></i> BESPOKE ATELIER</span>
+            <h3>Plan Your Boutique Visit</h3>
+            <p>Schedule a personal measurement and design session at our Rau, Indore studio.</p>
+          </div>
+
+          <div class="consultation-form-mini">
+            <div class="form-group-mini">
+              <label>Outfit Category</label>
+              <select id="quick-visit-category" class="form-input-mini">
+                <option value="Bridal Blouse">Bridal & Designer Blouse</option>
+                <option value="Flared Lehenga">Festive / Bridal Lehenga</option>
+                <option value="Child Dress">Kids Party / Traditional Dress</option>
+                <option value="Bhagwan Poshak">Divine Bhagwan Poshak</option>
+                <option value="Custom Alteration">Fitting & Alteration Trial</option>
+              </select>
+            </div>
+
+            <div class="form-group-mini">
+              <label>Your Name (Optional)</label>
+              <input type="text" id="quick-visit-name" class="form-input-mini" placeholder="e.g. Anjali Sharma">
+            </div>
+
+            <div class="form-group-mini">
+              <label>Preferred Visit Timing</label>
+              <select id="quick-visit-time" class="form-input-mini">
+                <option value="Today (Morning 11:00 AM - 2:00 PM)">Today (Morning 11:00 AM - 2:00 PM)</option>
+                <option value="Today (Evening 4:00 PM - 8:00 PM)">Today (Evening 4:00 PM - 8:00 PM)</option>
+                <option value="Tomorrow (Morning 11:00 AM - 2:00 PM)">Tomorrow (Morning 11:00 AM - 2:00 PM)</option>
+                <option value="Tomorrow (Evening 4:00 PM - 8:00 PM)">Tomorrow (Evening 4:00 PM - 8:00 PM)</option>
+                <option value="This Weekend">This Weekend</option>
+              </select>
+            </div>
+
+            <button type="button" class="btn-consultation-submit" onclick="submitQuickConsultation()">
+              <i class="fa-brands fa-whatsapp"></i> Schedule Visit on WhatsApp
+            </button>
+          </div>
+
+          <div class="consultation-card-footer">
+            <div class="consultation-features">
+              <span><i class="fa-solid fa-check"></i> Free Fitting Trial</span>
+              <span><i class="fa-solid fa-check"></i> Bespoke Measurements</span>
+              <span><i class="fa-solid fa-check"></i> Fabric Guidance</span>
+            </div>
+            <a href="https://maps.google.com/?q=Main+Road+Rangwasa+Rau+Indore" target="_blank" class="btn-maps-directions">
+              <i class="fa-solid fa-location-arrow"></i> Get Directions on Google Maps
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -233,7 +284,7 @@
         <h4>Nishi's Creations</h4>
         <p>Dedicated to creating custom stitched designer blouses, festive lehengas, kids dresses, and divine poshak with timeless elegance and precision fit.</p>
         <p style="margin-top: 12px; font-size: 0.82rem; color: var(--gold-accent);">
-          Main Road Rangwasa, Rau, Indore • 📞 Call: 6260808658 • 💬 WhatsApp: 9516482651
+          Main Road Rangwasa, Rau, Indore • 📞 Call: 6260808658 • 💬 WhatsApp Orders Available
         </p>
       </div>
 
@@ -250,7 +301,7 @@
       <div class="footer-col">
         <h4>Connect</h4>
         <ul class="footer-links">
-          <li><a href="https://wa.me/919516482651" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp: 9516482651</a></li>
+          <li><a href="https://wa.me/919516482651" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></li>
           <li><a href="tel:6260808658"><i class="fa-solid fa-phone"></i> Call: 6260808658</a></li>
           <li><a href="https://instagram.com/NISHIS_CREATIONS" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram: @NISHIS_CREATIONS</a></li>
         </ul>

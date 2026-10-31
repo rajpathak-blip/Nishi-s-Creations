@@ -130,63 +130,75 @@ body {
   border-color: #111114;
 }
 
-/* Center Brand Logo - Prominently Displayed */
+/* Center Brand Logo - Per SS1 (High Definition Circular Emblem + Typography) */
 .nav-brand-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
 }
 
 .nav-brand {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  transition: transform 0.25s ease;
+}
+
+.nav-brand:hover {
+  transform: translateY(-1px);
+}
+
+.nav-brand-img-wrap {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fbfaf7;
+  border: 1.5px solid rgba(197, 160, 89, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-brand:hover .nav-brand-img-wrap {
+  border-color: rgba(197, 160, 89, 0.9);
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.22);
 }
 
 .nav-brand-img {
-  height: 84px;
-  width: auto;
-  max-width: 320px;
-  object-fit: contain;
-  border-radius: 8px;
-  transition: transform 0.25s ease;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.08));
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  display: block;
 }
 
-.nav-brand:hover .nav-brand-img {
-  transform: scale(1.02);
-}
-
-.logo-theme-switcher {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  background: #f4f3ef;
-  border: 1px solid var(--border-color);
-  padding: 2px;
-  border-radius: var(--radius-full);
-  margin-top: 2px;
-}
-
-.btn-logo-switch {
-  background: none;
-  border: none;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+.nav-brand-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--text-muted);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: all 0.2s;
+  color: #111114;
+  line-height: 1.15;
+  text-align: center;
+  margin: 0;
 }
 
-.btn-logo-switch.active {
-  background: #111114;
-  color: #ffffff;
+.nav-brand-sub {
+  font-size: 0.68rem;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #777780;
+  margin-top: 2px;
+  font-weight: 500;
+  text-align: center;
 }
 
 /* Right Nav Actions */
@@ -730,12 +742,177 @@ body {
   color: var(--text-muted);
 }
 
-.visit-card-preview {
+/* ================= BOUTIQUE ATELIER CONSULTATION CARD ================= */
+.consultation-card-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.consultation-booking-card {
   width: 100%;
   max-width: 480px;
-  border-radius: 8px;
-  box-shadow: var(--shadow-card);
+  background: #ffffff;
   border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 30px 26px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.consultation-card-header {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.consultation-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c5a059;
+  background: rgba(197, 160, 89, 0.1);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 8px;
+}
+
+.consultation-card-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111114;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.consultation-card-header p {
+  font-size: 0.85rem;
+  color: #777780;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.consultation-form-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.form-group-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+
+.form-group-mini label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #333338;
+  letter-spacing: 0.5px;
+}
+
+.form-input-mini {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  background: #fbfaf8;
+  color: #111114;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.form-input-mini:focus {
+  border-color: #111114;
+  background: #ffffff;
+}
+
+.btn-consultation-submit {
+  width: 100%;
+  background: #25d366;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 13px 18px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.25);
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.btn-consultation-submit:hover {
+  background: #1ebc59;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.consultation-card-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f0eee8;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.consultation-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: #66666e;
+}
+
+.consultation-features span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.consultation-features i {
+  color: #25d366;
+  font-size: 0.75rem;
+}
+
+.btn-maps-directions {
+  width: 100%;
+  text-align: center;
+  padding: 9px 14px;
+  background: #f7f6f2;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #111114;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-maps-directions:hover {
+  background: #111114;
+  color: #ffffff;
+  border-color: #111114;
 }
 
 /* ================= FOOTER ================= */
