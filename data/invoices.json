@@ -1,0 +1,41 @@
+[
+  {
+    "id": "inv-101",
+    "invoiceNo": "NC-2026-101",
+    "customerName": "Pooja Sharma",
+    "phone": "9826012345",
+    "address": "Silicon City, Rau, Indore",
+    "orderDate": "2026-10-25",
+    "deliveryDate": "2026-11-04",
+    "measurements": "Blouse: Chest 36, Waist 30, Length 14.5, Front Deep 6.5, Back Deep 9.5, Sleeve 10",
+    "items": [
+      {
+        "description": "Designer Bridal Blouse Stitching (Padded)",
+        "qty": 1,
+        "rate": 1200,
+        "total": 1200
+      },
+      {
+        "description": "Maggam Hand Embroidery & Latkan",
+        "qty": 1,
+        "rate": 1500,
+        "total": 1500
+      },
+      {
+        "description": "Saree Fall & Pico Finishing",
+        "qty": 2,
+        "rate": 120,
+        "total": 240
+      }
+    ],
+    "subtotal": 2940,
+    "discount": 140,
+    "totalAmount": 2800,
+    "advancePaid": 1500,
+    "balanceDue": 1300,
+    "paymentMode": "UPI / GPay",
+    "status": "In Stitching",
+    "notes": "Trial on 2nd Nov before final hook & latkan fixing.",
+    "createdAt": "2026-10-31T09:30:34.515Z"
+  }
+]
