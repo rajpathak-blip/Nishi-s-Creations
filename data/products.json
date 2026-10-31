@@ -1,70 +1,54 @@
 [
   {
     "id": "prod-1",
-    "title": "Royal Peacock Bridal Blouse",
+    "title": "Royal Heritage Bridal Blouse",
     "category": "Blouses",
-    "price": 2400,
-    "fabric": "Pure Raw Silk with Zardozi & Maggam Work",
-    "description": "Intricate hand embroidery with peacock motifs, golden beads, and padded finish with designer back cut.",
+    "price": 2800,
+    "fabric": "Pure Raw Silk with Maggam & Zardozi Handwork",
+    "description": "Bespoke bridal blouse featuring exquisite handcrafted gold zardozi embroidery, intricate peacock sleeve motifs, padded fit with designer back neck cut.",
     "mediaType": "image",
-    "mediaUrl": "/assets/logo-dark.jpg",
-    "tags": [
-      "Bridal",
-      "Aari Work",
-      "Silk",
-      "Designer Blouse"
-    ],
-    "createdAt": "2026-10-31T09:30:34.511Z"
+    "mediaUrl": "/assets/blouse-sample.jpg",
+    "tags": ["Bridal", "Aari Work", "Maggam", "Custom Fit"],
+    "isPublished": true,
+    "createdAt": "2026-10-31T10:00:00.000Z"
   },
   {
     "id": "prod-2",
-    "title": "Festive Crimson Silk Lehenga",
+    "title": "Champagne Rose Flared Lehenga",
     "category": "Lehenga",
-    "price": 8500,
-    "fabric": "Banarasi Georgette with Gotta Patti Border",
-    "description": "16-kali full flare lehenga paired with customized designer choli and scalloped dupatta.",
+    "price": 9500,
+    "fabric": "Banarasi Georgette & Hand-woven Gold Zari",
+    "description": "16-kali royal flared lehenga with floral border motifs, paired with custom padded choli and scalloped organza dupatta with custom latkans.",
     "mediaType": "image",
-    "mediaUrl": "/assets/logo-light.jpg",
-    "tags": [
-      "Lehenga",
-      "Wedding",
-      "Full Flare",
-      "Banarasi"
-    ],
-    "createdAt": "2026-10-31T09:30:34.512Z"
+    "mediaUrl": "/assets/lehenga-sample.jpg",
+    "tags": ["Lehenga", "Wedding Couture", "Full Flare", "Indore"],
+    "isPublished": true,
+    "createdAt": "2026-10-31T10:05:00.000Z"
   },
   {
     "id": "prod-3",
-    "title": "Little Princess Birthday Gown",
-    "category": "Child Dresses",
-    "price": 1800,
-    "fabric": "Soft Organza with Cotton Inner Lining",
-    "description": "Fluffy layered party dress with handcrafted floral bow and itch-free soft lining for kids.",
+    "title": "Divine Laddu Gopal Ji Velvet Poshak",
+    "category": "Bhagwan Poshak",
+    "price": 1250,
+    "fabric": "Heavy Royal Velvet with Stone & Moti Lace",
+    "description": "Handmade sacred vastra set for Laddu Gopal Ji including designer embroidered ghagra, matching patka, and pearl-studded mukut set.",
     "mediaType": "image",
-    "mediaUrl": "/assets/logo-light.jpg",
-    "tags": [
-      "Kids Wear",
-      "Frock",
-      "Organza",
-      "Birthday"
-    ],
-    "createdAt": "2026-10-31T09:30:34.512Z"
+    "mediaUrl": "/assets/poshak-sample.jpg",
+    "tags": ["Bhagwan Poshak", "Laddu Gopal", "Velvet", "Divine Vastra"],
+    "isPublished": true,
+    "createdAt": "2026-10-31T10:10:00.000Z"
   },
   {
     "id": "prod-4",
-    "title": "Laddu Gopal Ji Velvet Poshak",
-    "category": "Bhagwan Poshak",
-    "price": 950,
-    "fabric": "Heavy Velvet with Stone & Moti Border",
-    "description": "Handmade divine dress set for Laddu Gopal Ji including Pagdi, Patka, and designer mukut matching work.",
+    "title": "Ivory Silk Reception Couture Set",
+    "category": "Custom Stitching",
+    "price": 4500,
+    "fabric": "Italian Crepe & Chanderi Silk",
+    "description": "Contemporary minimalist indo-western fusion ensemble with tailored palazzo and structured jacket blouse.",
     "mediaType": "image",
-    "mediaUrl": "/assets/logo-dark.jpg",
-    "tags": [
-      "Bhagwan Poshak",
-      "Laddu Gopal",
-      "Velvet",
-      "Pooja Vastra"
-    ],
-    "createdAt": "2026-10-31T09:30:34.512Z"
+    "mediaUrl": "/assets/hero-banner.jpg",
+    "tags": ["Indo Western", "Reception", "Custom Stitching"],
+    "isPublished": true,
+    "createdAt": "2026-10-31T10:15:00.000Z"
   }
 ]

@@ -201,9 +201,17 @@ app.post('/api/settings', (req, res) => {
   res.json({ success: true, settings: updated });
 });
 
-// Products: Get All
+// Admin Portal Page
+app.get('/admin', (req, res) => {
+  res.redirect('/admin.html');
+});
+
+// Products: Get All (supports ?publishedOnly=true)
 app.get('/api/products', (req, res) => {
   const products = readJson(PRODUCTS_FILE, []);
+  if (req.query.publishedOnly === 'true') {
+    return res.json(products.filter(p => p.isPublished !== false));
+  }
   res.json(products);
 });
 
@@ -211,7 +219,7 @@ app.get('/api/products', (req, res) => {
 app.post('/api/products', upload.array('media', 10), (req, res) => {
   try {
     const products = readJson(PRODUCTS_FILE, []);
-    const { title, category, price, fabric, description, tags } = req.body;
+    const { title, category, price, fabric, description, tags, isPublished } = req.body;
 
     const files = req.files || [];
     let mediaItems = [];
@@ -239,7 +247,8 @@ app.post('/api/products', upload.array('media', 10), (req, res) => {
       tags: typeof tags === 'string' ? tags.split(',').map(t => t.trim()).filter(Boolean) : (tags || []),
       media: mediaItems,
       mediaType: mediaItems.length > 0 ? mediaItems[0].type : 'image',
-      mediaUrl: mediaItems.length > 0 ? mediaItems[0].url : '/assets/logo-dark.jpg',
+      mediaUrl: mediaItems.length > 0 ? mediaItems[0].url : (req.body.mediaUrl || '/assets/blouse-sample.jpg'),
+      isPublished: isPublished === 'false' ? false : true,
       createdAt: new Date().toISOString()
     };
 
@@ -249,6 +258,63 @@ app.post('/api/products', upload.array('media', 10), (req, res) => {
     res.status(201).json({ success: true, product: newProduct });
   } catch (error) {
     console.error('Error creating product:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Products: Update / Edit Product
+app.put('/api/products/:id', upload.array('media', 10), (req, res) => {
+  try {
+    const products = readJson(PRODUCTS_FILE, []);
+    const index = products.findIndex(p => p.id === req.params.id);
+
+    if (index === -1) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    const existing = products[index];
+    const { title, category, price, fabric, description, tags, isPublished, mediaUrl } = req.body;
+
+    let mediaItems = existing.media || [];
+    let mediaType = existing.mediaType || 'image';
+    let finalMediaUrl = mediaUrl || existing.mediaUrl;
+
+    const files = req.files || [];
+    if (files.length > 0) {
+      const newMedia = files.map(file => {
+        const isVideo = file.mimetype.startsWith('video/') || /\.(mp4|webm|mov|mkv)$/i.test(file.originalname);
+        return {
+          filename: file.filename,
+          url: `/uploads/${file.filename}`,
+          type: isVideo ? 'video' : 'image',
+          originalName: file.originalname,
+          size: file.size
+        };
+      });
+      mediaItems = [...newMedia, ...mediaItems];
+      mediaType = newMedia[0].type;
+      finalMediaUrl = newMedia[0].url;
+    }
+
+    products[index] = {
+      ...existing,
+      title: title !== undefined ? title : existing.title,
+      category: category !== undefined ? category : existing.category,
+      price: price !== undefined ? Number(price) : existing.price,
+      fabric: fabric !== undefined ? fabric : existing.fabric,
+      description: description !== undefined ? description : existing.description,
+      tags: tags !== undefined ? (typeof tags === 'string' ? tags.split(',').map(t => t.trim()).filter(Boolean) : tags) : existing.tags,
+      isPublished: isPublished !== undefined ? (isPublished === 'true' || isPublished === true) : existing.isPublished,
+      media: mediaItems,
+      mediaType: mediaType,
+      mediaUrl: finalMediaUrl,
+      updatedAt: new Date().toISOString()
+    };
+
+    writeJson(PRODUCTS_FILE, products);
+    res.json({ success: true, product: products[index] });
+  } catch (error) {
+    console.error('Error updating product:', error);
     res.status(500).json({ error: error.message });
   }
 });

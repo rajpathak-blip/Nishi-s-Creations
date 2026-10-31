@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Studio | Nishi's Creations Designer Wear</title>
+
+  <!-- Google Fonts: Luxury Serif & Clean Modern Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- html2pdf for Invoices -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ADMIN TOP HEADER -->
+  <header class="admin-header">
+    <div class="admin-brand">
+      <img src="/assets/logo-light.jpg" alt="Nishi's Creations" class="admin-logo">
+      <div>
+        <h1>Nishi's Creations</h1>
+        <span class="admin-badge">Admin Studio • Boutique Control</span>
+      </div>
+    </div>
+
+    <div class="admin-header-actions">
+      <button type="button" class="btn btn-outline btn-sm" id="btn-admin-mobile-qr">
+        <i class="fa-solid fa-mobile-screen"></i> Mobile QR
+      </button>
+      <a href="/" target="_blank" class="btn-view-store">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <span>View Live Storefront</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ADMIN NAVIGATION TABS -->
+  <nav class="admin-nav">
+    <button class="admin-tab active" data-tab="tab-creations">
+      <i class="fa-solid fa-boxes-stacked"></i>
+      <span>Creations & Media Manager</span>
+    </button>
+    <button class="admin-tab" data-tab="tab-social">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>Social Status & Post Creator</span>
+    </button>
+    <button class="admin-tab" data-tab="tab-billing">
+      <i class="fa-solid fa-file-invoice-dollar"></i>
+      <span>Boutique Invoice & PDF</span>
+    </button>
+    <button class="admin-tab" data-tab="tab-orders">
+      <i class="fa-solid fa-clipboard-list"></i>
+      <span>Order Ledger</span>
+    </button>
+    <button class="admin-tab" data-tab="tab-settings">
+      <i class="fa-solid fa-gear"></i>
+      <span>Boutique Settings</span>
+    </button>
+  </nav>
+
+  <!-- MAIN ADMIN CONTENT -->
+  <main class="admin-container">
+
+    <!-- ================= TAB 1: CREATIONS & MEDIA MANAGER ================= -->
+    <section id="tab-creations" class="tab-pane active">
+      <div class="admin-card">
+        <div class="card-title-row">
+          <div>
+            <h2>Creations & Media Catalog</h2>
+            <p>Upload photos & videos of your wife's stitching work. Edit descriptions, prices, and control what shows on the live storefront.</p>
+          </div>
+          <button class="btn btn-primary" id="btn-open-create-modal">
+            <i class="fa-solid fa-plus"></i> Add New Creation
+          </button>
+        </div>
+
+        <!-- Filter bar -->
+        <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;">
+          <input type="text" id="admin-search-input" class="form-input" placeholder="🔍 Search products by title or fabric..." style="max-width: 340px;">
+          <select id="admin-category-filter" class="form-input" style="max-width: 220px;">
+            <option value="all">All Categories</option>
+            <option value="Blouses">🥻 Blouses</option>
+            <option value="Lehenga">👗 Lehenga</option>
+            <option value="Child Dresses">👧 Child Dresses</option>
+            <option value="Bhagwan Poshak">🪔 Bhagwan Poshak</option>
+            <option value="Custom Stitching">✂️ Custom Stitching</option>
+          </select>
+        </div>
+
+        <!-- Products Table -->
+        <div class="products-table-box">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th style="width: 70px;">Media</th>
+                <th>Title & Category</th>
+                <th>Fabric Details</th>
+                <th>Price</th>
+                <th>Storefront Status</th>
+                <th style="text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-products-tbody">
+              <!-- Rendered dynamically by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= TAB 2: SOCIAL POST & STATUS CREATOR ================= -->
+    <section id="tab-social" class="tab-pane">
+      <div class="admin-card" style="display: grid; grid-template-columns: 440px 1fr; gap: 28px;">
+        <!-- Left Controls -->
+        <div>
+          <div style="margin-bottom: 20px;">
+            <h2 style="font-size: 1.25rem;">✨ Social Post & Status Studio</h2>
+            <p style="color: var(--admin-muted); font-size: 0.85rem;">Create watermarked branded posts for WhatsApp Status & Instagram</p>
+          </div>
+
+          <div class="form-group">
+            <label>Select Creation to Post</label>
+            <select id="studio-product-select" class="form-input">
+              <option value="">-- Choose from Catalog --</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Post Format</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <button type="button" class="btn btn-outline btn-sm format-btn active" data-ratio="story">
+                <i class="fa-solid fa-mobile-screen"></i> 9:16 WhatsApp Status
+              </button>
+              <button type="button" class="btn btn-outline btn-sm format-btn" data-ratio="square">
+                <i class="fa-brands fa-instagram"></i> 1:1 Instagram Post
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Branding Options</label>
+            <div style="display: flex; flex-direction: column; gap: 8px; background: #fafafb; padding: 12px; border-radius: 6px; border: 1px solid var(--admin-border);">
+              <label style="font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="toggle-logo-overlay" checked>
+                <span>Nishi's Creations Gold Logo</span>
+              </label>
+              <label style="font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="toggle-contact-footer" checked>
+                <span>Phone (6260808658) & Instagram</span>
+              </label>
+              <label style="font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="toggle-address-strip" checked>
+                <span>Address (Main Road Rangwasa, Rau)</span>
+              </label>
+              <label style="font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="toggle-gold-border" checked>
+                <span>Gold Luxury Border Frame</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Overlay Title</label>
+              <input type="text" id="studio-overlay-title" class="form-input" placeholder="e.g. Bridal Blouse">
+            </div>
+            <div class="form-group">
+              <label>Price Badge</label>
+              <input type="text" id="studio-overlay-price" class="form-input" placeholder="e.g. ₹2400 / Custom">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="download-post-image-btn" style="width: 100%; margin-bottom: 16px;">
+            <i class="fa-solid fa-download"></i> Download HD Branded Image
+          </button>
+
+          <!-- Caption -->
+          <div style="background: #fafafb; border: 1px solid var(--admin-border); border-radius: 6px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <strong style="font-size: 0.82rem; color: var(--admin-dark);">Ready-to-Post Caption</strong>
+              <button type="button" class="btn btn-outline btn-sm" id="copy-caption-btn" style="padding: 4px 8px; font-size: 0.75rem;">
+                <i class="fa-solid fa-copy"></i> Copy
+              </button>
+            </div>
+            <textarea id="studio-caption-text" class="form-input" rows="5" style="font-size: 0.82rem; line-height: 1.4;"></textarea>
+            <button class="btn btn-sm" id="share-whatsapp-post-btn" style="background: #25d366; color: #fff; width: 100%; margin-top: 8px;">
+              <i class="fa-brands fa-whatsapp"></i> Share Caption on WhatsApp
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Preview Canvas -->
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafb; border: 1px dashed var(--admin-border); border-radius: 8px; padding: 24px;">
+          <canvas id="studio-canvas" style="max-width: 100%; max-height: 560px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 6px;"></canvas>
+          <span style="font-size: 0.78rem; color: var(--admin-muted); margin-top: 12px;">High-resolution 1080p preview</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= TAB 3: BOUTIQUE BILLING & PDF INVOICE ================= -->
+    <section id="tab-billing" class="tab-pane">
+      <div class="admin-card" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+        <!-- Left: Bill Creator Form -->
+        <div>
+          <div style="margin-bottom: 20px;">
+            <h2 style="font-size: 1.25rem;">🧾 Customer Bill & Invoice Generator</h2>
+            <p style="color: var(--admin-muted); font-size: 0.85rem;">Create official boutique bill with advance payment and PDF export</p>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Customer Name *</label>
+              <input type="text" id="bill-cust-name" class="form-input" placeholder="e.g. Pooja Sharma">
+            </div>
+            <div class="form-group">
+              <label>WhatsApp / Mobile No *</label>
+              <input type="tel" id="bill-cust-phone" class="form-input" placeholder="e.g. 9826012345">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Bill No</label>
+              <input type="text" id="bill-invoice-no" class="form-input" readonly>
+            </div>
+            <div class="form-group">
+              <label>Promised Delivery Date *</label>
+              <input type="date" id="bill-delivery-date" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Customer Locality / Address</label>
+            <input type="text" id="bill-cust-address" class="form-input" placeholder="e.g. Silicon City, Rau, Indore">
+          </div>
+
+          <div class="form-group">
+            <label>Measurements / Tailoring Notes</label>
+            <input type="text" id="bill-measurements" class="form-input" placeholder="e.g. Blouse: Length 14.5, Chest 36, Waist 30, Sleeve 10">
+          </div>
+
+          <!-- Items Table -->
+          <div style="margin: 16px 0;">
+            <label style="font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; display: block;">Items & Stitching Services</label>
+            <table class="admin-table" style="background: #ffffff; border: 1px solid var(--admin-border); border-radius: 6px;">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th style="width: 70px;">Qty</th>
+                  <th style="width: 100px;">Rate (₹)</th>
+                  <th style="width: 80px; text-align: right;">Total</th>
+                  <th style="width: 40px;"></th>
+                </tr>
+              </thead>
+              <tbody id="billing-items-body"></tbody>
+            </table>
+            <button type="button" class="btn btn-outline btn-sm" id="add-item-row-btn" style="margin-top: 8px;">
+              <i class="fa-solid fa-plus"></i> Add Item Row
+            </button>
+          </div>
+
+          <!-- Totals Grid -->
+          <div style="background: #fafafb; border: 1px solid var(--admin-border); border-radius: 6px; padding: 16px; margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+              <span>Subtotal:</span>
+              <strong id="bill-subtotal-disp">₹0</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span>Discount (₹):</span>
+              <input type="number" id="bill-discount-input" value="0" min="0" class="form-input" style="width: 100px; padding: 4px 8px; text-align: right;">
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; border-top: 1px solid var(--admin-border); border-bottom: 1px solid var(--admin-border); padding: 6px 0; margin: 6px 0;">
+              <span>Total Amount:</span>
+              <span id="bill-total-disp" style="color: var(--admin-dark);">₹0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span>Advance Received (₹):</span>
+              <input type="number" id="bill-advance-input" value="0" min="0" class="form-input" style="width: 100px; padding: 4px 8px; text-align: right; color: var(--admin-green);">
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 1.05rem; font-weight: 700; color: #dc2626;">
+              <span>Balance Due:</span>
+              <span id="bill-balance-disp">₹0</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="save-invoice-btn">
+              <i class="fa-solid fa-floppy-disk"></i> Save Order
+            </button>
+            <button class="btn btn-outline" id="print-pdf-btn">
+              <i class="fa-solid fa-file-pdf"></i> Download PDF
+            </button>
+            <button class="btn" id="send-whatsapp-bill-btn" style="background: #25d366; color: #fff;">
+              <i class="fa-brands fa-whatsapp"></i> Send on WhatsApp
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Printable Invoice Sheet -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--admin-muted);">Official Bill Preview</span>
+            <button type="button" class="btn btn-outline btn-sm" onclick="window.print()">
+              <i class="fa-solid fa-print"></i> Print
+            </button>
+          </div>
+
+          <div id="printable-invoice" style="background: #ffffff; border: 1px solid #ddd; padding: 32px; border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); font-family: 'Plus Jakarta Sans', sans-serif;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #b38e44; padding-bottom: 14px; margin-bottom: 14px;">
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <img src="/assets/logo-light.jpg" alt="Logo" style="width: 58px; height: 58px; border-radius: 4px; border: 1px solid #b38e44;">
+                <div>
+                  <h3 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: #111;">Nishi's Creations</h3>
+                  <p style="font-size: 0.68rem; letter-spacing: 2px; color: #b38e44; font-weight: 700;">DESIGNER WEAR • INDORE</p>
+                  <p style="font-size: 0.75rem; color: #555;">Main Road Rangwasa, Rau, Indore • 📞 6260808658</p>
+                </div>
+              </div>
+              <div style="text-align: right; font-size: 0.78rem;">
+                <strong style="display: block; font-size: 0.95rem; color: #111;" id="prev-bill-no">NC-2026-101</strong>
+                <span id="prev-date">31-10-2026</span><br>
+                <span style="color: #b38e44; font-weight: 600;">Delivery: <strong id="prev-delivery">05-11-2026</strong></span>
+              </div>
+            </div>
+
+            <div style="background: #fdfbf7; padding: 10px 14px; border-left: 3px solid #b38e44; margin-bottom: 14px; font-size: 0.82rem;">
+              <strong>Billed To:</strong> <span id="prev-cust-name">Customer Name</span> (<span id="prev-cust-phone">+91 00000 00000</span>)<br>
+              <span id="prev-cust-address" style="color: #666;">Main Road, Rau, Indore</span>
+            </div>
+
+            <div id="prev-measurements-container" style="background: #fafafa; border: 1px dashed #ddd; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #555; margin-bottom: 14px;">
+              <strong>Measurements:</strong> <span id="prev-measurements-text">Chest 36, Waist 30, Length 14.5</span>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-bottom: 14px;">
+              <thead>
+                <tr style="background: #111; color: #fff;">
+                  <th style="padding: 6px 8px; text-align: left;">Item</th>
+                  <th style="padding: 6px 8px; text-align: center;">Qty</th>
+                  <th style="padding: 6px 8px; text-align: right;">Rate</th>
+                  <th style="padding: 6px 8px; text-align: right;">Amount</th>
+                </tr>
+              </thead>
+              <tbody id="prev-items-body"></tbody>
+            </table>
+
+            <div style="display: flex; justify-content: space-between; border-top: 1px solid #eee; padding-top: 10px; font-size: 0.82rem;">
+              <div style="font-size: 0.7rem; color: #777; max-width: 50%;">
+                • Fitting trials valid within 7 days.<br>
+                • 50% advance upon order confirmation.<br>
+                • Bring this receipt during delivery.
+              </div>
+              <div style="text-align: right; line-height: 1.5;">
+                Subtotal: <strong id="prev-subtotal">₹0</strong><br>
+                Discount: <strong id="prev-discount">₹0</strong><br>
+                Total: <strong id="prev-total" style="font-size: 0.95rem;">₹0</strong><br>
+                Advance Paid: <strong id="prev-advance" style="color: #15803d;">₹0</strong><br>
+                <span style="color: #b91c1c; font-weight: 700;">Balance Due: <strong id="prev-balance">₹0</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= TAB 4: ORDER LEDGER ================= -->
+    <section id="tab-orders" class="tab-pane">
+      <div class="admin-card">
+        <div class="card-title-row">
+          <div>
+            <h2>Customer Orders Ledger</h2>
+            <p>Track stitching progress, delivery deadlines, and remaining balance collections.</p>
+          </div>
+        </div>
+
+        <div class="products-table-box">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Bill No</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Delivery Date</th>
+                <th>Total</th>
+                <th>Advance</th>
+                <th>Balance Due</th>
+                <th>Status</th>
+                <th style="text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-tbody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= TAB 5: BOUTIQUE SETTINGS ================= -->
+    <section id="tab-settings" class="tab-pane">
+      <div class="admin-card" style="max-width: 720px;">
+        <div class="card-title-row">
+          <div>
+            <h2>Boutique Configuration</h2>
+            <p>Update contact information, appointment phone, and address</p>
+          </div>
+        </div>
+
+        <form id="settings-form">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Boutique Name</label>
+              <input type="text" id="set-name" class="form-input" value="Nishi's Creations" required>
+            </div>
+            <div class="form-group">
+              <label>Tagline</label>
+              <input type="text" id="set-tagline" class="form-input" value="DESIGNER WEAR">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Appointment Phone / Mobile</label>
+              <input type="tel" id="set-phone" class="form-input" value="6260808658" required>
+            </div>
+            <div class="form-group">
+              <label>Instagram Handle</label>
+              <input type="text" id="set-instagram" class="form-input" value="@NISHIS_CREATIONS">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Boutique Address</label>
+            <input type="text" id="set-address" class="form-input" value="Main Road Rangwasa, Rau, Indore" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top: 12px;">
+            Save Settings
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ADD / EDIT PRODUCT MODAL -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-form-title">Add New Creation</h3>
+        <button class="modal-close-btn" id="close-product-modal">&times;</button>
+      </div>
+
+      <form id="product-form">
+        <input type="hidden" id="form-product-id" value="">
+
+        <!-- DRAG AND DROP ZONE FOR PHOTOS/VIDEOS -->
+        <div class="upload-dropzone" id="admin-dropzone">
+          <input type="file" id="form-media-files" name="media" accept="image/*,video/*" multiple style="display: none;">
+          <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+          <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Drag & Drop Photos or Videos</h4>
+          <p style="font-size: 0.8rem; color: var(--admin-muted);">Or click to browse from your computer (Blouses, Lehenga, Poshak, etc.)</p>
+          <div id="form-drop-preview" style="display: flex; gap: 8px; justify-content: center; margin-top: 10px; flex-wrap: wrap;"></div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Creation Title *</label>
+            <input type="text" id="form-title" class="form-input" placeholder="e.g. Royal Maggam Work Blouse" required>
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="form-category" class="form-input">
+              <option value="Blouses">🥻 Blouses</option>
+              <option value="Lehenga">👗 Lehenga</option>
+              <option value="Child Dresses">👧 Child Dresses</option>
+              <option value="Bhagwan Poshak">🪔 Bhagwan Poshak</option>
+              <option value="Custom Stitching">✂️ Custom Stitching</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Price / Stitching Rate (₹)</label>
+            <input type="number" id="form-price" class="form-input" placeholder="e.g. 2400">
+          </div>
+          <div class="form-group">
+            <label>Fabric & Material</label>
+            <input type="text" id="form-fabric" class="form-input" placeholder="e.g. Pure Silk with Zardozi Work">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Work & Design Description</label>
+          <textarea id="form-description" class="form-input" rows="2" placeholder="e.g. Handcrafted peacock motifs on sleeves, princess cut with padded finish..."></textarea>
+        </div>
+
+        <!-- PUBLISH SWITCH: CONTROLS IF VISIBLE ON STOREFRONT -->
+        <div class="switch-group">
+          <div class="switch-label">
+            <strong>Publish on Live Main Page</strong>
+            <span>Turn this ON when editing is complete and you want customers to see it.</span>
+          </div>
+          <input type="checkbox" id="form-published" checked style="width: 20px; height: 20px; accent-color: var(--admin-green);">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="btn btn-outline" id="cancel-product-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="save-product-btn">
+            <i class="fa-solid fa-check"></i> Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MOBILE QR MODAL -->
+  <div class="modal-overlay" id="admin-mobile-modal">
+    <div class="modal-box" style="max-width: 440px; text-align: center;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-mobile-screen"></i> Open on Mobile Phone</h3>
+        <button class="modal-close-btn" id="close-admin-mobile-modal">&times;</button>
+      </div>
+      <div style="padding: 16px 0;">
+        <p style="font-size: 0.88rem; color: var(--admin-muted); margin-bottom: 16px;">
+          Scan with your phone camera to open Nishi's Creations on your mobile device (via Cloudflare Tunnel / Local Wi-Fi):
+        </p>
+        <div style="display: inline-block; padding: 12px; background: #fff; border: 1px solid var(--admin-border); border-radius: 8px; margin-bottom: 16px;">
+          <img id="admin-qr-img" src="" alt="QR" style="width: 200px; height: 200px; display: block;">
+        </div>
+        <input type="text" id="admin-qr-link" class="form-input" readonly style="text-align: center; font-weight: 700; margin-bottom: 10px;">
+        <button class="btn btn-primary btn-sm" id="btn-copy-qr-link">
+          <i class="fa-solid fa-copy"></i> Copy Link
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="admin-toast-container" id="admin-toast-container"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

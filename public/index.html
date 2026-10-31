@@ -3,746 +3,288 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nishi's Creations | Designer Wear Boutique Studio</title>
+  <title>Nishi's Creations | Bespoke Designer Wear & Tailoring</title>
   
-  <!-- Google Fonts: Luxury Serif & Clean Modern Sans -->
+  <!-- Google Fonts: Luxury Serif & Editorial Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome Icons for crisp boutique UI -->
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- html2pdf for high quality client-side PDF invoices -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-  <!-- Canvas Confetti for order celebration -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="storefront.css">
 </head>
 <body>
-  <div class="app-layout">
-    
-    <!-- TOP LUXURY HEADER -->
-    <header class="app-header">
-      <div class="header-brand">
-        <img src="/assets/logo-dark.jpg" alt="Nishi's Creations Logo" class="brand-logo-img">
-        <div class="brand-text">
-          <h1 class="brand-title">Nishi's Creations</h1>
-          <span class="brand-subtitle">DESIGNER WEAR • BOUTIQUE STUDIO</span>
-        </div>
-      </div>
 
-      <div class="header-contact-badges">
-        <button type="button" class="btn btn-gold btn-sm" id="btn-open-mobile-modal" style="cursor: pointer; font-weight: 700;">
-          <i class="fa-solid fa-mobile-screen"></i> <span>Open on Mobile</span>
-        </button>
-        <div class="contact-pill">
-          <i class="fa-solid fa-phone"></i>
-          <span>6260808658</span>
-        </div>
-        <div class="contact-pill">
-          <i class="fa-brands fa-instagram"></i>
-          <span>@NISHIS_CREATIONS</span>
-        </div>
-        <div class="contact-pill location">
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Main Road Rangwasa, Rau, Indore</span>
-        </div>
-      </div>
-    </header>
-
-    <!-- NAVIGATION TABS -->
-    <nav class="main-nav">
-      <button class="nav-tab active" data-tab="catalog-tab">
-        <i class="fa-solid fa-gem"></i>
-        <span>Creations Vault (Media)</span>
-      </button>
-      <button class="nav-tab" data-tab="social-tab">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span>Social Post & Status Studio</span>
-      </button>
-      <button class="nav-tab" data-tab="billing-tab">
-        <i class="fa-solid fa-file-invoice-dollar"></i>
-        <span>Boutique Invoice & PDF</span>
-      </button>
-      <button class="nav-tab" data-tab="orders-tab">
-        <i class="fa-solid fa-list-check"></i>
-        <span>Customer Order Ledger</span>
-      </button>
-      <button class="nav-tab" data-tab="settings-tab">
-        <i class="fa-solid fa-sliders"></i>
-        <span>Boutique Info</span>
-      </button>
-    </nav>
-
-    <!-- MAIN APP CONTENT AREA -->
-    <main class="content-container">
-
-      <!-- ================= TAB 1: CREATIONS VAULT ================= -->
-      <section id="catalog-tab" class="tab-pane active">
-        <!-- Top Stats / Action Strip -->
-        <div class="vault-header-row">
-          <div>
-            <h2 class="section-title">New Stitching Creations</h2>
-            <p class="section-desc">Drop photos & videos of blouses, lehengas, child dresses, and bhagwan poshak to organize and promote.</p>
-          </div>
-          <button class="btn btn-gold" id="open-upload-modal-btn">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
-            <span>Upload New Creation</span>
-          </button>
-        </div>
-
-        <!-- Quick Categories Bar -->
-        <div class="category-filter-bar">
-          <button class="filter-pill active" data-category="all">All Products</button>
-          <button class="filter-pill" data-category="Blouses">🥻 Blouses</button>
-          <button class="filter-pill" data-category="Lehenga">👗 Lehenga</button>
-          <button class="filter-pill" data-category="Child Dresses">👧 Child Dresses</button>
-          <button class="filter-pill" data-category="Bhagwan Poshak">🪔 Bhagwan Poshak</button>
-          <button class="filter-pill" data-category="Kurtis & Suits">👘 Kurtis & Suits</button>
-          <button class="filter-pill" data-category="Custom Stitching">✂️ Custom Stitching</button>
-        </div>
-
-        <!-- Grid of Products -->
-        <div class="products-grid" id="products-grid">
-          <!-- Populated by JavaScript -->
-        </div>
-      </section>
-
-
-      <!-- ================= TAB 2: SOCIAL POST & STATUS STUDIO ================= -->
-      <section id="social-tab" class="tab-pane">
-        <div class="social-studio-container">
-          <!-- Left Controls Sidebar -->
-          <div class="studio-controls-panel">
-            <div class="panel-header">
-              <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Post & Status Creator</h3>
-              <p>Generate branded posts for Instagram & WhatsApp Status with 1-click watermark</p>
-            </div>
-
-            <!-- Media Source Selection -->
-            <div class="control-group">
-              <label><i class="fa-solid fa-image"></i> Select Product / Upload Image</label>
-              <select id="studio-product-select" class="form-input">
-                <option value="">-- Choose from Catalog --</option>
-              </select>
-              <div class="or-divider"><span>OR UPLOAD CUSTOM</span></div>
-              <input type="file" id="studio-custom-file" accept="image/*" class="file-input-compact">
-            </div>
-
-            <!-- Format Ratio Switcher -->
-            <div class="control-group">
-              <label><i class="fa-solid fa-crop-simple"></i> Post Format</label>
-              <div class="format-toggle-grid">
-                <button type="button" class="format-btn active" data-ratio="story">
-                  <i class="fa-solid fa-mobile-screen"></i>
-                  <span>WhatsApp Status / Reel</span>
-                  <small>9:16 (Story)</small>
-                </button>
-                <button type="button" class="format-btn" data-ratio="square">
-                  <i class="fa-brands fa-instagram"></i>
-                  <span>Instagram Post</span>
-                  <small>1:1 (Square)</small>
-                </button>
-                <button type="button" class="format-btn" data-ratio="portrait">
-                  <i class="fa-regular fa-image"></i>
-                  <span>Insta Portrait</span>
-                  <small>4:5 (Feed)</small>
-                </button>
-              </div>
-            </div>
-
-            <!-- Watermark & Branding Customizer -->
-            <div class="control-group">
-              <label><i class="fa-solid fa-crown"></i> Branding & Watermark</label>
-              <div class="checkbox-list">
-                <label class="custom-checkbox">
-                  <input type="checkbox" id="toggle-logo-overlay" checked>
-                  <span>Include Nishi's Creations Gold Logo</span>
-                </label>
-                <label class="custom-checkbox">
-                  <input type="checkbox" id="toggle-contact-footer" checked>
-                  <span>Show Phone (6260808658) & Instagram</span>
-                </label>
-                <label class="custom-checkbox">
-                  <input type="checkbox" id="toggle-address-strip" checked>
-                  <span>Show Address (Main Road Rangwasa, Rau)</span>
-                </label>
-                <label class="custom-checkbox">
-                  <input type="checkbox" id="toggle-gold-border" checked>
-                  <span>Royal Gold Border & Vignette Frame</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Overlay Text & Price Tag -->
-            <div class="control-group">
-              <label><i class="fa-solid fa-tags"></i> Overlay Badge / Price</label>
-              <div class="grid-2-col">
-                <input type="text" id="studio-overlay-title" class="form-input" placeholder="e.g. Designer Bridal Blouse">
-                <input type="text" id="studio-overlay-price" class="form-input" placeholder="e.g. Custom Stitched / ₹1800">
-              </div>
-            </div>
-
-            <!-- Download Button -->
-            <div class="studio-action-row">
-              <button class="btn btn-gold w-100" id="download-post-image-btn">
-                <i class="fa-solid fa-download"></i>
-                <span>Download Ready Post Image (HD)</span>
-              </button>
-            </div>
-
-            <!-- AI-Assisted Smart Caption Box -->
-            <div class="caption-generator-box">
-              <div class="caption-header">
-                <span class="caption-title"><i class="fa-solid fa-hashtag"></i> Ready-to-Post Caption</span>
-                <button class="btn-sm btn-outline" id="regenerate-caption-btn" title="Refresh Caption">
-                  <i class="fa-solid fa-arrows-rotate"></i>
-                </button>
-              </div>
-              <textarea id="studio-caption-text" class="caption-textarea" rows="6"></textarea>
-              <div class="caption-actions">
-                <button class="btn btn-sm btn-gold" id="copy-caption-btn">
-                  <i class="fa-solid fa-copy"></i> Copy Caption
-                </button>
-                <button class="btn btn-sm btn-whatsapp" id="share-whatsapp-post-btn">
-                  <i class="fa-brands fa-whatsapp"></i> Share on WhatsApp
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Right Live Preview Canvas -->
-          <div class="studio-preview-panel">
-            <div class="preview-badge">Live Canvas Preview</div>
-            <div class="canvas-viewport" id="canvas-viewport">
-              <canvas id="studio-canvas"></canvas>
-            </div>
-            <p class="canvas-hint"><i class="fa-solid fa-circle-info"></i> The output will be exported in crystal clear high-resolution (1080p) ready for WhatsApp Status & Instagram.</p>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ================= TAB 3: BOUTIQUE BILLING & PDF INVOICE ================= -->
-      <section id="billing-tab" class="tab-pane">
-        <div class="billing-container">
-          
-          <!-- Bill Creator Form -->
-          <div class="billing-form-card">
-            <div class="panel-header">
-              <h3><i class="fa-solid fa-pen-nib"></i> New Boutique Bill / Invoice</h3>
-              <p>Generate branded PDF bill for stitching, bridal wear, alteration, or custom poshak</p>
-            </div>
-
-            <!-- Customer Details -->
-            <div class="form-section">
-              <h4 class="form-section-title"><i class="fa-solid fa-user"></i> Customer Information</h4>
-              <div class="grid-3-col">
-                <div class="form-field">
-                  <label>Customer Name *</label>
-                  <input type="text" id="bill-cust-name" class="form-input" placeholder="e.g. Pooja Sharma" required>
-                </div>
-                <div class="form-field">
-                  <label>WhatsApp / Mobile No *</label>
-                  <input type="tel" id="bill-cust-phone" class="form-input" placeholder="e.g. 9826012345" required>
-                </div>
-                <div class="form-field">
-                  <label>Customer Locality / Address</label>
-                  <input type="text" id="bill-cust-address" class="form-input" placeholder="e.g. Rau, Indore">
-                </div>
-              </div>
-
-              <div class="grid-3-col mt-2">
-                <div class="form-field">
-                  <label>Invoice / Bill No</label>
-                  <input type="text" id="bill-invoice-no" class="form-input" readonly>
-                </div>
-                <div class="form-field">
-                  <label>Order Date</label>
-                  <input type="date" id="bill-order-date" class="form-input">
-                </div>
-                <div class="form-field">
-                  <label>Promised Delivery Date *</label>
-                  <input type="date" id="bill-delivery-date" class="form-input" required>
-                </div>
-              </div>
-            </div>
-
-            <!-- Quick Measurements Notes -->
-            <div class="form-section">
-              <div class="section-title-with-btn">
-                <h4 class="form-section-title"><i class="fa-solid fa-ruler-combined"></i> Measurements & Stitching Specifications</h4>
-                <div class="preset-links">
-                  <button type="button" class="btn-tiny" id="btn-preset-blouse">Blouse Specs</button>
-                  <button type="button" class="btn-tiny" id="btn-preset-lehenga">Lehenga Specs</button>
-                  <button type="button" class="btn-tiny" id="btn-preset-dress">Kids Dress Specs</button>
-                </div>
-              </div>
-              <textarea id="bill-measurements" class="form-input" rows="2" placeholder="e.g. Blouse: Length 14.5, Chest 36, Waist 30, Front Neck 6.5, Back Neck 9.5, Sleeves 10..."></textarea>
-            </div>
-
-            <!-- Quick Item Presets -->
-            <div class="form-section">
-              <label class="preset-label"><i class="fa-solid fa-bolt"></i> Quick Add Common Boutique Services:</label>
-              <div class="quick-items-container">
-                <button type="button" class="btn-chip" onclick="addPresetItem('Designer Bridal Blouse (Padded)', 1200)">+ Bridal Blouse (₹1200)</button>
-                <button type="button" class="btn-chip" onclick="addPresetItem('Simple Blouse Stitching', 550)">+ Simple Blouse (₹550)</button>
-                <button type="button" class="btn-chip" onclick="addPresetItem('Maggam / Aari Handwork & Latkan', 1500)">+ Maggam Handwork (₹1500)</button>
-                <button type="button" class="btn-chip" onclick="addPresetItem('16-Kali Lehenga Stitching & Canvas', 2500)">+ Lehenga Stitching (₹2500)</button>
-                <button type="button" class="btn-chip" onclick="addPresetItem('Child Party Frock / Gown', 950)">+ Child Dress (₹950)</button>
-                <button type="button" class="btn-chip" onclick="addPresetItem('Laddu Gopal Ji Velvet Poshak', 850)">+ Bhagwan Poshak (₹850)</button>
-                <button type="button" class="btn-chip" onclick="addPresetItem('Designer Kurti & Plazo Stitching', 850)">+ Kurti Plazo (₹850)</button>
-                <button type="button" class="btn-chip" onclick="addPresetItem('Saree Fall, Pico & Alteration', 150)">+ Fall & Pico (₹150)</button>
-              </div>
-            </div>
-
-            <!-- Stitching Items Table -->
-            <div class="form-section">
-              <table class="billing-items-table" id="billing-items-table">
-                <thead>
-                  <tr>
-                    <th style="width: 50%;">Item / Work Description</th>
-                    <th style="width: 15%;">Qty</th>
-                    <th style="width: 20%;">Rate (₹)</th>
-                    <th style="width: 15%; text-align: right;">Total (₹)</th>
-                    <th style="width: 5%;"></th>
-                  </tr>
-                </thead>
-                <tbody id="billing-items-body">
-                  <!-- Dynamic Item Rows -->
-                </tbody>
-              </table>
-              <button type="button" class="btn btn-outline btn-sm mt-2" id="add-item-row-btn">
-                <i class="fa-solid fa-plus"></i> Add Custom Row
-              </button>
-            </div>
-
-            <!-- Financial Calculations -->
-            <div class="form-section calculations-grid">
-              <div class="form-field">
-                <label>Payment Mode</label>
-                <select id="bill-payment-mode" class="form-input">
-                  <option value="Cash">Cash</option>
-                  <option value="UPI / PhonePe / GPay">UPI / PhonePe / GPay</option>
-                  <option value="Bank Transfer">Bank Transfer / Card</option>
-                </select>
-                <label class="mt-2">Order Status</label>
-                <select id="bill-order-status" class="form-input">
-                  <option value="In Stitching">In Stitching</option>
-                  <option value="Ready for Trial">Ready for Trial</option>
-                  <option value="Delivered">Delivered</option>
-                  <option value="Pending Fabric">Pending Fabric</option>
-                </select>
-              </div>
-
-              <div class="totals-summary-box">
-                <div class="summary-line">
-                  <span>Subtotal:</span>
-                  <span id="bill-subtotal-disp">₹0</span>
-                </div>
-                <div class="summary-line">
-                  <span>Discount:</span>
-                  <div class="input-with-symbol">
-                    <span>₹</span>
-                    <input type="number" id="bill-discount-input" value="0" min="0" class="input-sm">
-                  </div>
-                </div>
-                <div class="summary-line grand-total">
-                  <span>Total Amount:</span>
-                  <span id="bill-total-disp">₹0</span>
-                </div>
-                <div class="summary-line advance-line">
-                  <span>Advance Received:</span>
-                  <div class="input-with-symbol">
-                    <span>₹</span>
-                    <input type="number" id="bill-advance-input" value="0" min="0" class="input-sm">
-                  </div>
-                </div>
-                <div class="summary-line balance-due-line">
-                  <span>Balance Due:</span>
-                  <span id="bill-balance-disp" class="balance-badge">₹0</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Notes -->
-            <div class="form-section">
-              <label>Special Instructions / Notes</label>
-              <input type="text" id="bill-notes" class="form-input" placeholder="e.g. Customer will bring lace on Monday; fitting trial required before hook fixing.">
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="billing-actions-row">
-              <button class="btn btn-gold" id="save-invoice-btn">
-                <i class="fa-solid fa-floppy-disk"></i> Save & Generate Bill
-              </button>
-              <button class="btn btn-outline" id="print-pdf-btn">
-                <i class="fa-solid fa-file-pdf"></i> Download PDF Bill
-              </button>
-              <button class="btn btn-whatsapp" id="send-whatsapp-bill-btn">
-                <i class="fa-brands fa-whatsapp"></i> Send Bill on WhatsApp
-              </button>
-              <button class="btn btn-text" id="reset-bill-form-btn">
-                <i class="fa-solid fa-rotate-left"></i> Clear
-              </button>
-            </div>
-          </div>
-
-          <!-- Live Printable Invoice Sheet Preview -->
-          <div class="invoice-preview-wrapper">
-            <div class="invoice-preview-badge">
-              <span><i class="fa-solid fa-eye"></i> Customer Invoice Preview</span>
-              <button class="btn-tiny" onclick="printInvoiceDirect()"><i class="fa-solid fa-print"></i> Print</button>
-            </div>
-
-            <div class="printable-invoice" id="printable-invoice">
-              <!-- INVOICE HEADER -->
-              <div class="inv-header">
-                <div class="inv-brand">
-                  <img src="/assets/logo-light.jpg" alt="Nishi's Creations" class="inv-logo">
-                  <div>
-                    <h2 class="inv-brand-name">Nishi's Creations</h2>
-                    <p class="inv-tagline">DESIGNER WEAR • BOUTIQUE</p>
-                    <p class="inv-address">Main Road Rangwasa, Rau, Indore (M.P.)</p>
-                    <p class="inv-contact">📞 <strong>6260808658</strong> | 📸 <strong>@NISHIS_CREATIONS</strong></p>
-                  </div>
-                </div>
-                <div class="inv-meta">
-                  <div class="inv-chip">ORDER INVOICE</div>
-                  <div class="inv-number-row">
-                    <span>Bill No:</span>
-                    <strong id="prev-bill-no">NC-2026-101</strong>
-                  </div>
-                  <div class="inv-number-row">
-                    <span>Date:</span>
-                    <strong id="prev-date">31-10-2026</strong>
-                  </div>
-                  <div class="inv-number-row delivery-highlight">
-                    <span>Trial / Delivery:</span>
-                    <strong id="prev-delivery">05-11-2026</strong>
-                  </div>
-                </div>
-              </div>
-
-              <!-- CUSTOMER INFO BAR -->
-              <div class="inv-customer-bar">
-                <div class="inv-cust-col">
-                  <span class="label">Billed To:</span>
-                  <h4 class="name" id="prev-cust-name">Customer Name</h4>
-                  <p class="address" id="prev-cust-address">Main Road, Rau, Indore</p>
-                </div>
-                <div class="inv-cust-col text-right">
-                  <span class="label">Customer Contact:</span>
-                  <p class="phone" id="prev-cust-phone">+91 98260 00000</p>
-                  <p class="status-pill" id="prev-status-pill">In Stitching</p>
-                </div>
-              </div>
-
-              <!-- MEASUREMENTS BOX (IF ANY) -->
-              <div class="inv-measurements-box" id="prev-measurements-container">
-                <strong>Measurements / Tailoring Notes:</strong>
-                <p id="prev-measurements-text">Chest: 36 | Waist: 30 | Length: 14.5 | Sleeve: 10</p>
-              </div>
-
-              <!-- ITEMS TABLE -->
-              <table class="inv-table">
-                <thead>
-                  <tr>
-                    <th style="width: 8%;">S.N.</th>
-                    <th style="width: 52%;">Description of Work / Stitching</th>
-                    <th style="width: 10%; text-align: center;">Qty</th>
-                    <th style="width: 15%; text-align: right;">Rate (₹)</th>
-                    <th style="width: 15%; text-align: right;">Amount (₹)</th>
-                  </tr>
-                </thead>
-                <tbody id="prev-items-body">
-                  <tr>
-                    <td>1</td>
-                    <td>Designer Bridal Blouse Stitching (Padded)</td>
-                    <td style="text-align: center;">1</td>
-                    <td style="text-align: right;">₹1,200</td>
-                    <td style="text-align: right;">₹1,200</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <!-- TOTALS SECTION -->
-              <div class="inv-bottom-section">
-                <div class="inv-terms-col">
-                  <strong>Terms & Conditions:</strong>
-                  <ol>
-                    <li>50% advance payment required upon order confirmation.</li>
-                    <li>Please present this bill / digital receipt at delivery.</li>
-                    <li>Fitting trials and adjustments valid within 7 days.</li>
-                    <li>Payment via UPI / Cash accepted.</li>
-                  </ol>
-                  <div class="inv-payment-mode-note">
-                    Payment Mode: <strong id="prev-payment-mode">UPI</strong>
-                  </div>
-                </div>
-
-                <div class="inv-amounts-col">
-                  <div class="amount-row">
-                    <span>Sub Total:</span>
-                    <strong id="prev-subtotal">₹1,200</strong>
-                  </div>
-                  <div class="amount-row">
-                    <span>Discount:</span>
-                    <strong id="prev-discount">₹0</strong>
-                  </div>
-                  <div class="amount-row grand">
-                    <span>Total Amount:</span>
-                    <strong id="prev-total">₹1,200</strong>
-                  </div>
-                  <div class="amount-row advance">
-                    <span>Advance Received:</span>
-                    <strong id="prev-advance">₹600</strong>
-                  </div>
-                  <div class="amount-row balance">
-                    <span>Balance Due:</span>
-                    <strong id="prev-balance">₹600</strong>
-                  </div>
-                </div>
-              </div>
-
-              <!-- SIGNATURE & STAMP -->
-              <div class="inv-footer-row">
-                <div class="thank-you-note">
-                  <p>✨ <em>Thank you for trusting Nishi's Creations for your special attire!</em> ✨</p>
-                </div>
-                <div class="signature-box">
-                  <p>For <strong>Nishi's Creations</strong></p>
-                  <div class="sig-line">Authorized Signatory</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ================= TAB 4: CUSTOMER ORDER LEDGER ================= -->
-      <section id="orders-tab" class="tab-pane">
-        <div class="orders-header-row">
-          <div>
-            <h2 class="section-title">Customer Order Ledger</h2>
-            <p class="section-desc">Track client orders, stitching progress, advance received, and remaining dues.</p>
-          </div>
-          <div class="orders-stats-chips" id="orders-stats-chips">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
-
-        <div class="orders-controls">
-          <input type="text" id="order-search-input" class="form-input search-input" placeholder="🔍 Search by customer name, phone, or bill number...">
-          <div class="status-filter-pills">
-            <button class="filter-pill active" data-status="all">All Orders</button>
-            <button class="filter-pill" data-status="In Stitching">In Stitching</button>
-            <button class="filter-pill" data-status="Ready for Trial">Ready for Trial</button>
-            <button class="filter-pill" data-status="Delivered">Delivered</button>
-            <button class="filter-pill" data-status="Balance Due">Pending Balance</button>
-          </div>
-        </div>
-
-        <div class="orders-table-wrapper">
-          <table class="orders-table">
-            <thead>
-              <tr>
-                <th>Bill No</th>
-                <th>Customer</th>
-                <th>Phone</th>
-                <th>Delivery Date</th>
-                <th>Total</th>
-                <th>Advance</th>
-                <th>Balance Due</th>
-                <th>Status</th>
-                <th style="text-align: center;">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="orders-table-body">
-              <!-- Rendered by JS -->
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-
-      <!-- ================= TAB 5: BOUTIQUE SETTINGS & BACKUP ================= -->
-      <section id="settings-tab" class="tab-pane">
-        <div class="settings-card">
-          <div class="panel-header">
-            <h3><i class="fa-solid fa-store"></i> Boutique Details & Configuration</h3>
-            <p>Customize your contact information, social links, and invoice terms</p>
-          </div>
-
-          <form id="settings-form" class="settings-form">
-            <div class="grid-2-col">
-              <div class="form-field">
-                <label>Boutique Name</label>
-                <input type="text" id="set-name" class="form-input" value="Nishi's Creations" required>
-              </div>
-              <div class="form-field">
-                <label>Tagline</label>
-                <input type="text" id="set-tagline" class="form-input" value="DESIGNER WEAR">
-              </div>
-            </div>
-
-            <div class="grid-3-col mt-2">
-              <div class="form-field">
-                <label>Phone / Appointment Mobile</label>
-                <input type="tel" id="set-phone" class="form-input" value="6260808658" required>
-              </div>
-              <div class="form-field">
-                <label>Instagram Handle</label>
-                <input type="text" id="set-instagram" class="form-input" value="@NISHIS_CREATIONS">
-              </div>
-              <div class="form-field">
-                <label>UPI ID (For GPay / PhonePe QR)</label>
-                <input type="text" id="set-upi" class="form-input" value="6260808658@upi">
-              </div>
-            </div>
-
-            <div class="form-field mt-2">
-              <label>Boutique Address</label>
-              <input type="text" id="set-address" class="form-input" value="Main Road Rangwasa, Rau, Indore" required>
-            </div>
-
-            <div class="boutique-brand-preview mt-3">
-              <h4>Boutique Card Reference</h4>
-              <img src="/assets/appointment-card.jpg" alt="Appointment Card" class="appointment-card-preview">
-            </div>
-
-            <div class="mt-3">
-              <button type="submit" class="btn btn-gold">
-                <i class="fa-solid fa-check"></i> Save Boutique Settings
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="app-footer">
-      <span>✨ <strong>Nishi's Creations</strong> Designer Wear Boutique System • Built for Localhost</span>
-      <span>Main Road Rangwasa, Rau, Indore • 📞 6260808658</span>
-    </footer>
-  </div>
-
-  <!-- UPLOAD MODAL FOR NEW CREATIONS -->
-  <div class="modal-overlay" id="upload-modal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3><i class="fa-solid fa-cloud-arrow-up"></i> Add New Stitching Creation</h3>
-        <button class="modal-close-btn" id="close-upload-modal">&times;</button>
-      </div>
-
-      <form id="upload-form" class="modal-body">
-        <!-- DRAG AND DROP ZONE -->
-        <div class="drop-zone" id="drop-zone">
-          <input type="file" id="media-file-input" name="media" accept="image/*,video/*" multiple class="file-input-hidden">
-          <div class="drop-zone-content">
-            <i class="fa-solid fa-photo-film drop-icon"></i>
-            <h4>Drag & Drop Photos or Videos here</h4>
-            <p>Or click to browse from your computer (Blouses, Lehenga, Poshak, etc.)</p>
-            <span class="file-types-hint">Supports JPG, PNG, WEBP, MP4, MOV videos</span>
-          </div>
-          <div class="drop-preview-list" id="drop-preview-list"></div>
-        </div>
-
-        <div class="grid-2-col mt-2">
-          <div class="form-field">
-            <label>Product Title / Name *</label>
-            <input type="text" name="title" id="upload-title" class="form-input" placeholder="e.g. Royal Maggam Work Blouse" required>
-          </div>
-          <div class="form-field">
-            <label>Category *</label>
-            <select name="category" id="upload-category" class="form-input">
-              <option value="Blouses">🥻 Blouses</option>
-              <option value="Lehenga">👗 Lehenga</option>
-              <option value="Child Dresses">👧 Child Dresses</option>
-              <option value="Bhagwan Poshak">🪔 Bhagwan Poshak</option>
-              <option value="Kurtis & Suits">👘 Kurtis & Suits</option>
-              <option value="Custom Stitching">✂️ Custom Stitching</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid-2-col mt-2">
-          <div class="form-field">
-            <label>Price / Stitching Rate (₹)</label>
-            <input type="number" name="price" id="upload-price" class="form-input" placeholder="e.g. 1500">
-          </div>
-          <div class="form-field">
-            <label>Fabric / Material Details</label>
-            <input type="text" name="fabric" id="upload-fabric" class="form-input" placeholder="e.g. Pure Silk, Velvet, Organza">
-          </div>
-        </div>
-
-        <div class="form-field mt-2">
-          <label>Work & Design Description</label>
-          <textarea name="description" id="upload-description" class="form-input" rows="2" placeholder="e.g. Intricate zardozi embroidery with peacock motif and padded finish"></textarea>
-        </div>
-
-        <div class="form-field mt-2">
-          <label>Tags (Comma separated)</label>
-          <input type="text" name="tags" id="upload-tags" class="form-input" placeholder="Bridal, Aari Work, Hand Stitched, Indore">
-        </div>
-
-        <div class="modal-footer mt-3">
-          <button type="button" class="btn btn-outline" id="cancel-upload-btn">Cancel</button>
-          <button type="submit" class="btn btn-gold" id="submit-upload-btn">
-            <i class="fa-solid fa-plus"></i> Save to Vault
-          </button>
-        </div>
-      </form>
+  <!-- TOP ANNOUNCEMENT STRIP -->
+  <aside class="top-bar">
+    <div class="top-bar-left">
+      <span><i class="fa-solid fa-location-dot"></i> Main Road Rangwasa, Rau, Indore</span>
+      <span>•</span>
+      <span><i class="fa-solid fa-phone"></i> 6260808658</span>
     </div>
-  </div>
+    <div class="top-bar-right">
+      <a href="https://wa.me/916260808658?text=Hello%20Nishi's%20Creations,%20I%20would%20like%20to%20book%20a%20stitching%20appointment!" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> Book Stitching Appointment
+      </a>
+    </div>
+  </aside>
 
-  <!-- MOBILE CONNECT MODAL (QR CODE & LINK) -->
-  <div class="modal-overlay" id="mobile-modal">
-    <div class="modal-box" style="max-width: 480px; text-align: center;">
-      <div class="modal-header">
-        <h3><i class="fa-solid fa-mobile-screen-button"></i> Open on Your Mobile Phone</h3>
-        <button class="modal-close-btn" id="close-mobile-modal">&times;</button>
+  <!-- MAIN NAVIGATION (AERIS LUXURY AESTHETIC) -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <!-- Left Category Links -->
+      <nav>
+        <ul class="nav-links-left">
+          <li><a href="#creations-section" onclick="filterCategory('Blouses')">Blouses</a></li>
+          <li><a href="#creations-section" onclick="filterCategory('Lehenga')">Lehenga</a></li>
+          <li><a href="#creations-section" onclick="filterCategory('Child Dresses')">Child Dresses</a></li>
+          <li><a href="#creations-section" onclick="filterCategory('Bhagwan Poshak')">Bhagwan Poshak</a></li>
+          <li><a href="#visit-section">Boutique Visit</a></li>
+        </ul>
+      </nav>
+
+      <!-- Center Brand Identity -->
+      <a href="/" class="nav-brand">
+        <img src="/assets/logo-light.jpg" alt="Nishi's Creations Logo" class="nav-brand-img">
+        <span class="nav-brand-title">Nishi's Creations</span>
+        <span class="nav-brand-sub">DESIGNER WEAR • INDORE</span>
+      </a>
+
+      <!-- Right Actions: WhatsApp & Admin Studio -->
+      <div class="nav-actions-right">
+        <a href="https://wa.me/916260808658" target="_blank" class="btn-whatsapp-pill" title="Chat on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a href="/admin" class="btn-admin-link" title="Open Boutique Admin Portal to edit photos, videos and orders">
+          <i class="fa-solid fa-sliders"></i>
+          <span>Admin Portal</span>
+        </a>
       </div>
-      <div class="modal-body" style="padding: 24px 16px;">
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">
-          Make sure your phone is connected to the same Wi-Fi network. Scan the QR code or use the link below:
+    </div>
+  </header>
+
+  <!-- EDITORIAL HERO BANNER (MATCHING USER SAMPLE) -->
+  <section class="hero-section">
+    <img src="/assets/hero-banner.jpg" alt="Nishi's Creations Luxury Couture" class="hero-bg-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag">NEW COLLECTION 2026</span>
+      <h1 class="hero-title">STYLE.<br>CONFIDENCE.<br>YOU.</h1>
+      <p class="hero-desc">Bespoke bridal blouses, 16-kali flared lehengas, charming kids couture and divine Bhagwan poshak crafted with soul and precision tailoring.</p>
+      <div class="hero-buttons">
+        <a href="#creations-section" class="btn-hero-white">Explore Collections</a>
+        <a href="tel:6260808658" class="btn-hero-outline">Call: 6260808658</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CATALOG SECTION: NEW CREATIONS (AERIS НОВИНКИ STYLE) -->
+  <section id="creations-section" class="section-wrapper">
+    <div class="section-head-center">
+      <h2 class="section-title-large">NEW ARRIVALS</h2>
+      <p class="section-subtitle">Handcrafted stitching masterpieces by Nishi's Creations</p>
+      
+      <!-- Category Tabs Filter -->
+      <div class="category-tabs-row" id="category-tabs">
+        <button class="cat-tab-btn active" data-category="all">All Creations</button>
+        <button class="cat-tab-btn" data-category="Blouses">Designer Blouses</button>
+        <button class="cat-tab-btn" data-category="Lehenga">Lehenga Choli</button>
+        <button class="cat-tab-btn" data-category="Child Dresses">Child Dresses</button>
+        <button class="cat-tab-btn" data-category="Bhagwan Poshak">Bhagwan Poshak</button>
+        <button class="cat-tab-btn" data-category="Custom Stitching">Custom Stitching</button>
+      </div>
+    </div>
+
+    <!-- Dynamic Products Grid -->
+    <div class="products-grid-editorial" id="products-grid-container">
+      <!-- Populated via storefront.js from /api/products?publishedOnly=true -->
+    </div>
+  </section>
+
+  <!-- EDITORIAL BENTO CAPSULE SECTION (MATCHING AERIS SAMPLE) -->
+  <section class="section-wrapper" style="padding-top: 0;">
+    <div class="section-head-center">
+      <h2 class="section-title-large">FEATURED CAPSULES</h2>
+      <p class="section-subtitle">Specialized boutique craftsmanship for every divine and joyous occasion</p>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Bento 1: Bridal Blouses (Large Left) -->
+      <div class="bento-item bento-large-left">
+        <img src="/assets/blouse-sample.jpg" alt="Bridal Blouses" class="bento-img">
+        <div class="bento-overlay">
+          <span class="bento-tag">SIGNATURE CRAFT</span>
+          <h3 class="bento-title">BRIDAL BLOUSE<br>MASTERPIECES</h3>
+          <p class="bento-desc">Aari & Maggam hand embroidery, bridal tassels, princess cut, and custom necklines designed for your bridal glow.</p>
+          <a href="#creations-section" onclick="filterCategory('Blouses')" class="bento-link">
+            Explore Blouses <i class="fa-solid fa-arrow-right-long"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bento 2: Flared Lehengas -->
+      <div class="bento-item">
+        <img src="/assets/lehenga-sample.jpg" alt="Royal Lehenga" class="bento-img">
+        <div class="bento-overlay">
+          <span class="bento-tag">FESTIVE & WEDDINGS</span>
+          <h3 class="bento-title">FLARED LEHENGAS</h3>
+          <p class="bento-desc">Full 16-kali flair with custom canvas lining & matching cholis.</p>
+          <a href="#creations-section" onclick="filterCategory('Lehenga')" class="bento-link">
+            View Designs <i class="fa-solid fa-arrow-right-long"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bento 3: Bhagwan Poshak -->
+      <div class="bento-item">
+        <img src="/assets/poshak-sample.jpg" alt="Divine Bhagwan Poshak" class="bento-img">
+        <div class="bento-overlay">
+          <span class="bento-tag">DIVINE COLLECTION</span>
+          <h3 class="bento-title">BHAGWAN POSHAK</h3>
+          <p class="bento-desc">Sacred velvet, silk, and stone vastra for Laddu Gopal Ji & Radha Krishna.</p>
+          <a href="#creations-section" onclick="filterCategory('Bhagwan Poshak')" class="bento-link">
+            View Sacred Sets <i class="fa-solid fa-arrow-right-long"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bento 4: Custom Sizing & Fitting -->
+      <div class="bento-item" style="grid-column: span 2;">
+        <img src="/assets/hero-banner.jpg" alt="Custom Stitching Consultation" class="bento-img">
+        <div class="bento-overlay">
+          <span class="bento-tag">BESPOKE SERVICES</span>
+          <h3 class="bento-title">PERFECT FIT GUARANTEE</h3>
+          <p class="bento-desc">Bring your fabric or choose our customized tailoring. Free trial fitting and minor adjustments with every order.</p>
+          <a href="https://wa.me/916260808658?text=Hello,%20I%20would%20like%20to%20consult%20for%20custom%20stitching!" target="_blank" class="bento-link">
+            Consult on WhatsApp <i class="fa-solid fa-arrow-right-long"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUTIQUE VISIT & APPOINTMENT SECTION -->
+  <section id="visit-section" class="section-wrapper visit-section">
+    <div class="visit-grid">
+      <div class="visit-details">
+        <span class="hero-tag" style="color: var(--gold-accent);">VISIT OUR BOUTIQUE</span>
+        <h2>EXPERIENCE BESPOKE LUXURY</h2>
+        <p>Step into Nishi's Creations for personalized tailoring consultations, trial fittings, and custom design selection in Rau, Indore.</p>
+
+        <div class="boutique-info-list">
+          <div class="info-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Boutique Location</strong>
+              <span>Main Road Rangwasa, Rau, Indore (M.P.)</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong>Phone & Appointments</strong>
+              <span>+91 6260808658</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fa-brands fa-instagram"></i>
+            <div>
+              <strong>Instagram Portfolio</strong>
+              <span>@NISHIS_CREATIONS</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <strong>Store Hours</strong>
+              <span>Monday – Saturday: 10:30 AM – 8:30 PM (Sunday by appointment)</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/916260808658?text=Namaste!%20I%20would%20like%20to%20visit%20Nishi's%20Creations%20for%20an%20appointment." target="_blank" class="btn-hero-white" style="background: #121214; color: #fff;">
+          <i class="fa-brands fa-whatsapp"></i> Book Appointment on WhatsApp
+        </a>
+      </div>
+
+      <div style="text-align: center;">
+        <img src="/assets/appointment-card.jpg" alt="Nishi's Creations Appointment Details" class="visit-card-preview">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Nishi's Creations</h4>
+        <p>Dedicated to creating custom stitched designer blouses, festive lehengas, kids dresses, and divine poshak with timeless elegance and precision fit.</p>
+        <p style="margin-top: 12px; font-size: 0.82rem; color: var(--gold-accent);">
+          Main Road Rangwasa, Rau, Indore • 📞 6260808658
         </p>
+      </div>
 
-        <!-- QR Code Container -->
-        <div style="background: #ffffff; padding: 14px; border-radius: 12px; display: inline-block; margin-bottom: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-          <img id="mobile-qr-img" src="" alt="Scan QR Code to open on mobile" style="width: 200px; height: 200px; display: block; border-radius: 6px;">
+      <div class="footer-col">
+        <h4>Collections</h4>
+        <ul class="footer-links">
+          <li><a href="#creations-section" onclick="filterCategory('Blouses')">Bridal Blouses</a></li>
+          <li><a href="#creations-section" onclick="filterCategory('Lehenga')">Flared Lehengas</a></li>
+          <li><a href="#creations-section" onclick="filterCategory('Child Dresses')">Kids Dresses</a></li>
+          <li><a href="#creations-section" onclick="filterCategory('Bhagwan Poshak')">Bhagwan Poshak</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/916260808658" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a></li>
+          <li><a href="https://instagram.com/NISHIS_CREATIONS" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+          <li><a href="tel:6260808658"><i class="fa-solid fa-phone"></i> Call 6260808658</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Management</h4>
+        <p style="margin-bottom: 14px;">Boutique admin panel to edit photos, videos, pricing, social posts, and billing.</p>
+        <a href="/admin" class="btn-admin-link" style="display: inline-flex;">
+          <i class="fa-solid fa-sliders"></i> Open Admin Portal
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Nishi's Creations Designer Wear. All rights reserved.</span>
+      <span>Indore, Madhya Pradesh</span>
+    </div>
+  </footer>
+
+  <!-- QUICK VIEW DETAIL MODAL -->
+  <div class="modal-overlay" id="quick-view-modal">
+    <div class="modal-content-box">
+      <button class="modal-close-btn" id="close-quick-modal">&times;</button>
+      <div class="modal-media-col" id="modal-media-wrap">
+        <!-- Rendered by JS -->
+      </div>
+      <div class="modal-info-col">
+        <span class="modal-cat-tag" id="modal-category">Category</span>
+        <h3 class="modal-title" id="modal-title">Product Title</h3>
+        <div class="modal-price" id="modal-price">₹0</div>
+        <p class="modal-desc" id="modal-desc">Description of work...</p>
+        <div class="modal-fabric-pill" id="modal-fabric">
+          <i class="fa-solid fa-vest"></i> Fabric Details
         </div>
-
-        <!-- Copyable Link Strip -->
-        <div style="display: flex; gap: 8px; margin-bottom: 14px;">
-          <input type="text" id="mobile-link-input" class="form-input" readonly style="font-weight: 700; text-align: center; color: var(--gold-light); font-size: 1.05rem;">
-          <button type="button" class="btn btn-gold btn-sm" id="copy-mobile-link-btn" title="Copy Link">
-            <i class="fa-solid fa-copy"></i> Copy
-          </button>
-        </div>
-
-        <div style="background: rgba(212, 175, 55, 0.08); border: 1px solid var(--border-gold); border-radius: 8px; padding: 14px; font-size: 0.85rem; color: var(--text-muted); text-align: left; line-height: 1.6;">
-          <strong style="color: var(--gold-light); display: block; margin-bottom: 6px;">💡 3 Easy Steps to Connect:</strong>
-          1. Connect your phone to your local Wi-Fi.<br>
-          2. Open your phone camera and scan the QR code above.<br>
-          3. Tap the link to use <strong>Nishi's Creations</strong> on your mobile phone!
+        <div class="modal-actions">
+          <a href="#" target="_blank" class="btn-modal-whatsapp" id="modal-whatsapp-link">
+            <i class="fa-brands fa-whatsapp"></i> Enquire / Order on WhatsApp
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div class="toast-container" id="toast-container"></div>
-
-  <!-- LOAD APPLICATION SCRIPT -->
-  <script src="app.js"></script>
+  <script src="storefront.js"></script>
 </body>
 </html>
