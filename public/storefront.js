@@ -55,9 +55,9 @@ function renderStorefrontGrid() {
 
     const formattedPrice = product.price ? `₹${Number(product.price).toLocaleString('en-IN')}` : 'Custom Order';
 
-    // WhatsApp Message
+    // WhatsApp Message (to WhatsApp number: 9516482651)
     const waText = encodeURIComponent(`Namaste Nishi's Creations! 🙏\nI saw the "${product.title}" (${formattedPrice}) on your website. I would like to enquire about stitching/ordering this!`);
-    const waUrl = `https://wa.me/916260808658?text=${waText}`;
+    const waUrl = `https://wa.me/919516482651?text=${waText}`;
 
     card.innerHTML = `
       <div class="card-media-box">
@@ -159,7 +159,34 @@ window.openQuickView = function(productId) {
   }
 
   const msg = encodeURIComponent(`Namaste Nishi's Creations! 🙏\nI am interested in ordering/customizing "${product.title}" (${priceElem.textContent}). Please let me know the process!`);
-  waLink.href = `https://wa.me/916260808658?text=${msg}`;
+  waLink.href = `https://wa.me/919516482651?text=${msg}`;
 
   modal.classList.add('active');
 };
+
+// Logo Switcher (Light Logo vs Dark Logo)
+window.switchHeaderLogo = function(theme) {
+  const logoImg = document.getElementById('header-brand-logo');
+  const btnLight = document.getElementById('btn-switch-light');
+  const btnDark = document.getElementById('btn-switch-dark');
+
+  if (!logoImg) return;
+
+  if (theme === 'dark') {
+    logoImg.src = '/assets/logo-dark.jpg';
+    if (btnLight) btnLight.classList.remove('active');
+    if (btnDark) btnDark.classList.add('active');
+    localStorage.setItem('nishi_logo_theme', 'dark');
+  } else {
+    logoImg.src = '/assets/logo-light.jpg';
+    if (btnLight) btnLight.classList.add('active');
+    if (btnDark) btnDark.classList.remove('active');
+    localStorage.setItem('nishi_logo_theme', 'light');
+  }
+};
+
+// Initialize logo preference on load
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('nishi_logo_theme') || 'light';
+  window.switchHeaderLogo(saved);
+});

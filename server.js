@@ -29,6 +29,7 @@ const defaultSettings = {
   boutiqueName: "Nishi's Creations",
   tagline: "DESIGNER WEAR",
   phone: "6260808658",
+  whatsapp: "9516482651",
   instagram: "@NISHIS_CREATIONS",
   address: "Main Road Rangwasa, Rau, Indore",
   upiId: "6260808658@upi",
@@ -456,7 +457,7 @@ function getLocalNetworkIp() {
 }
 
 // Cloudflare Tunnel URL
-const CLOUDFLARE_TUNNEL_URL = 'https://div-hourly-converter-poor.trycloudflare.com';
+const CLOUDFLARE_TUNNEL_URL = 'https://speaks-conditional-honey-loan.trycloudflare.com';
 
 app.get('/api/network-info', (req, res) => {
   const localIp = getLocalNetworkIp();

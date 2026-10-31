@@ -22,43 +22,46 @@
     <div class="top-bar-left">
       <span><i class="fa-solid fa-location-dot"></i> Main Road Rangwasa, Rau, Indore</span>
       <span>•</span>
-      <span><i class="fa-solid fa-phone"></i> 6260808658</span>
+      <span><i class="fa-solid fa-phone"></i> Call: 6260808658</span>
+      <span>•</span>
+      <span><i class="fa-brands fa-whatsapp"></i> WhatsApp: 9516482651</span>
     </div>
     <div class="top-bar-right">
-      <a href="https://wa.me/916260808658?text=Hello%20Nishi's%20Creations,%20I%20would%20like%20to%20book%20a%20stitching%20appointment!" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i> Book Stitching Appointment
+      <a href="https://wa.me/919516482651?text=Hello%20Nishi's%20Creations,%20I%20would%20like%20to%20book%20a%20stitching%20appointment!" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp (9516482651)
       </a>
     </div>
   </aside>
 
-  <!-- MAIN NAVIGATION (AERIS LUXURY AESTHETIC) -->
+  <!-- MAIN NAVIGATION (CLEAN LUXURY EDITORIAL HEADER) -->
   <header class="site-header">
     <div class="nav-inner">
-      <!-- Left Category Links -->
-      <nav>
-        <ul class="nav-links-left">
-          <li><a href="#creations-section" onclick="filterCategory('Blouses')">Blouses</a></li>
-          <li><a href="#creations-section" onclick="filterCategory('Lehenga')">Lehenga</a></li>
-          <li><a href="#creations-section" onclick="filterCategory('Child Dresses')">Child Dresses</a></li>
-          <li><a href="#creations-section" onclick="filterCategory('Bhagwan Poshak')">Bhagwan Poshak</a></li>
-          <li><a href="#visit-section">Boutique Visit</a></li>
-        </ul>
-      </nav>
-
-      <!-- Center Brand Identity -->
-      <a href="/" class="nav-brand">
-        <img src="/assets/logo-light.jpg" alt="Nishi's Creations Logo" class="nav-brand-img">
-        <span class="nav-brand-title">Nishi's Creations</span>
-        <span class="nav-brand-sub">DESIGNER WEAR • INDORE</span>
-      </a>
-
-      <!-- Right Actions: WhatsApp & Admin Studio -->
-      <div class="nav-actions-right">
-        <a href="https://wa.me/916260808658" target="_blank" class="btn-whatsapp-pill" title="Chat on WhatsApp">
-          <i class="fa-brands fa-whatsapp"></i>
-          <span>WhatsApp</span>
+      <!-- Left: Direct Calling Phone -->
+      <div class="nav-left-call">
+        <a href="tel:6260808658" class="btn-call-pill" title="Call Boutique Directly">
+          <i class="fa-solid fa-phone"></i>
+          <span>Call: 6260808658</span>
         </a>
-        <a href="/admin" class="btn-admin-link" title="Open Boutique Admin Portal to edit photos, videos and orders">
+      </div>
+
+      <!-- Center: Prominent Full Brand Logo with Light / Dark switcher -->
+      <div class="nav-brand-container">
+        <a href="/" class="nav-brand" title="Nishi's Creations Designer Wear">
+          <img src="/assets/logo-light.jpg" alt="Nishi's Creations Designer Wear" class="nav-brand-img" id="header-brand-logo">
+        </a>
+        <div class="logo-theme-switcher" title="Switch between Light & Dark logo">
+          <button type="button" class="btn-logo-switch active" id="btn-switch-light" onclick="switchHeaderLogo('light')">☀️ Light Logo</button>
+          <button type="button" class="btn-logo-switch" id="btn-switch-dark" onclick="switchHeaderLogo('dark')">🌙 Dark Logo</button>
+        </div>
+      </div>
+
+      <!-- Right Actions: WhatsApp (9516482651) & Admin Portal -->
+      <div class="nav-actions-right">
+        <a href="https://wa.me/919516482651" target="_blank" class="btn-whatsapp-pill" title="Chat on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp (9516482651)</span>
+        </a>
+        <a href="/admin" class="btn-admin-link" title="Open Boutique Admin Portal">
           <i class="fa-solid fa-sliders"></i>
           <span>Admin Portal</span>
         </a>
@@ -158,7 +161,7 @@
           <span class="bento-tag">BESPOKE SERVICES</span>
           <h3 class="bento-title">PERFECT FIT GUARANTEE</h3>
           <p class="bento-desc">Bring your fabric or choose our customized tailoring. Free trial fitting and minor adjustments with every order.</p>
-          <a href="https://wa.me/916260808658?text=Hello,%20I%20would%20like%20to%20consult%20for%20custom%20stitching!" target="_blank" class="bento-link">
+          <a href="https://wa.me/919516482651?text=Hello,%20I%20would%20like%20to%20consult%20for%20custom%20stitching!" target="_blank" class="bento-link">
             Consult on WhatsApp <i class="fa-solid fa-arrow-right-long"></i>
           </a>
         </div>
@@ -185,8 +188,15 @@
           <div class="info-item">
             <i class="fa-solid fa-phone"></i>
             <div>
-              <strong>Phone & Appointments</strong>
+              <strong>Calling & Appointments</strong>
               <span>+91 6260808658</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <div>
+              <strong>WhatsApp Orders & Inquiries</strong>
+              <span>+91 9516482651</span>
             </div>
           </div>
           <div class="info-item">
@@ -205,8 +215,8 @@
           </div>
         </div>
 
-        <a href="https://wa.me/916260808658?text=Namaste!%20I%20would%20like%20to%20visit%20Nishi's%20Creations%20for%20an%20appointment." target="_blank" class="btn-hero-white" style="background: #121214; color: #fff;">
-          <i class="fa-brands fa-whatsapp"></i> Book Appointment on WhatsApp
+        <a href="https://wa.me/919516482651?text=Namaste!%20I%20would%20like%20to%20visit%20Nishi's%20Creations%20for%20an%20appointment." target="_blank" class="btn-hero-white" style="background: #121214; color: #fff;">
+          <i class="fa-brands fa-whatsapp"></i> Book Appointment on WhatsApp (9516482651)
         </a>
       </div>
 
@@ -223,7 +233,7 @@
         <h4>Nishi's Creations</h4>
         <p>Dedicated to creating custom stitched designer blouses, festive lehengas, kids dresses, and divine poshak with timeless elegance and precision fit.</p>
         <p style="margin-top: 12px; font-size: 0.82rem; color: var(--gold-accent);">
-          Main Road Rangwasa, Rau, Indore • 📞 6260808658
+          Main Road Rangwasa, Rau, Indore • 📞 Call: 6260808658 • 💬 WhatsApp: 9516482651
         </p>
       </div>
 
@@ -240,9 +250,9 @@
       <div class="footer-col">
         <h4>Connect</h4>
         <ul class="footer-links">
-          <li><a href="https://wa.me/916260808658" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a></li>
-          <li><a href="https://instagram.com/NISHIS_CREATIONS" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-          <li><a href="tel:6260808658"><i class="fa-solid fa-phone"></i> Call 6260808658</a></li>
+          <li><a href="https://wa.me/919516482651" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp: 9516482651</a></li>
+          <li><a href="tel:6260808658"><i class="fa-solid fa-phone"></i> Call: 6260808658</a></li>
+          <li><a href="https://instagram.com/NISHIS_CREATIONS" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram: @NISHIS_CREATIONS</a></li>
         </ul>
       </div>
 

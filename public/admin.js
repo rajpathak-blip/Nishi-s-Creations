@@ -494,9 +494,9 @@ function renderCanvas() {
     ctx.fillStyle = '#f5d77f';
     ctx.fillText("BOOK AN APPOINTMENT", width / 2, footerY);
 
-    ctx.font = '700 34px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '700 30px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText("📞 6260808658", width / 2, footerY + 40);
+    ctx.fillText("📞 6260808658 • 💬 WhatsApp: 9516482651", width / 2, footerY + 40);
 
     if (document.getElementById('toggle-address-strip').checked) {
       ctx.font = '500 20px "Plus Jakarta Sans", sans-serif';
@@ -519,10 +519,11 @@ New Arrival: *${title}* 🥻
 🧵 Custom tailored to your exact measurements with premium finish.
 
 📍 Visit Boutique: Main Road Rangwasa, Rau, Indore
-📞 Call / Book Appointment: 6260808658
+📞 Calling / Appointments: 6260808658
+💬 WhatsApp: 9516482651
 📸 Instagram: @NISHIS_CREATIONS
 
-WhatsApp us directly on 6260808658 for orders and custom stitching! 🌸
+WhatsApp us directly on 9516482651 for orders and custom stitching! 🌸
 #NishisCreations #IndoreBoutique #DesignerBlouse #LehengaCholi #BhagwanPoshak #CustomStitching`;
 
   document.getElementById('studio-caption-text').value = caption;
@@ -613,7 +614,7 @@ function setupBilling() {
     const delivery = document.getElementById('bill-delivery-date').value;
 
     const msg = `🌸 *Nishi's Creations - Designer Wear* 🌸
-Main Road Rangwasa, Rau, Indore | 📞 6260808658
+Main Road Rangwasa, Rau, Indore | 📞 Call: 6260808658 | 💬 WhatsApp: 9516482651
 
 Namaste *${name}* Ji 🙏
 Thank you for your order at Nishi's Creations!
@@ -809,6 +810,9 @@ async function fetchSettings() {
     document.getElementById('set-name').value = adminState.settings.boutiqueName || '';
     document.getElementById('set-tagline').value = adminState.settings.tagline || '';
     document.getElementById('set-phone').value = adminState.settings.phone || '';
+    if (document.getElementById('set-whatsapp')) {
+      document.getElementById('set-whatsapp').value = adminState.settings.whatsapp || '9516482651';
+    }
     document.getElementById('set-instagram').value = adminState.settings.instagram || '';
     document.getElementById('set-address').value = adminState.settings.address || '';
   } catch (err) {
@@ -823,6 +827,7 @@ function setupSettings() {
       boutiqueName: document.getElementById('set-name').value.trim(),
       tagline: document.getElementById('set-tagline').value.trim(),
       phone: document.getElementById('set-phone').value.trim(),
+      whatsapp: document.getElementById('set-whatsapp') ? document.getElementById('set-whatsapp').value.trim() : '9516482651',
       instagram: document.getElementById('set-instagram').value.trim(),
       address: document.getElementById('set-address').value.trim()
     };

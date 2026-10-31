@@ -87,75 +87,106 @@ body {
 .site-header {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
   z-index: 100;
-  padding: 16px 40px;
+  padding: 10px 40px;
 }
 
 .nav-inner {
   max-width: 1500px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-/* Left Nav Links */
-.nav-links-left {
+/* Left Contact Calling Pill */
+.nav-left-call {
   display: flex;
-  gap: 28px;
-  list-style: none;
+  align-items: center;
+  gap: 10px;
 }
 
-.nav-links-left a {
+.btn-call-pill {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   color: var(--text-dark);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
   text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
 }
 
-.nav-links-left a:hover {
-  color: var(--gold-accent);
+.btn-call-pill:hover {
+  background: #111114;
+  color: #ffffff;
+  border-color: #111114;
 }
 
-/* Center Brand Logo */
-.nav-brand {
-  text-align: center;
+/* Center Brand Logo - Prominently Displayed */
+.nav-brand-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 4px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
 }
 
 .nav-brand-img {
-  width: 44px;
-  height: 44px;
-  object-fit: cover;
-  border-radius: 50%;
+  height: 84px;
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.25s ease;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.08));
+}
+
+.nav-brand:hover .nav-brand-img {
+  transform: scale(1.02);
+}
+
+.logo-theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: #f4f3ef;
   border: 1px solid var(--border-color);
-  margin-bottom: 4px;
+  padding: 2px;
+  border-radius: var(--radius-full);
+  margin-top: 2px;
 }
 
-.nav-brand-title {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: var(--text-dark);
-  line-height: 1.1;
+.btn-logo-switch {
+  background: none;
+  border: none;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-}
-
-.nav-brand-sub {
-  font-size: 0.65rem;
-  letter-spacing: 2.5px;
   color: var(--text-muted);
-  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-logo-switch.active {
+  background: #111114;
+  color: #ffffff;
 }
 
 /* Right Nav Actions */
@@ -163,7 +194,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 16px;
+  gap: 14px;
 }
 
 .btn-admin-link {

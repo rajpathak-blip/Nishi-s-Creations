@@ -11,6 +11,7 @@ const state = {
     boutiqueName: "Nishi's Creations",
     tagline: "DESIGNER WEAR",
     phone: "6260808658",
+    whatsapp: "9516482651",
     instagram: "@NISHIS_CREATIONS",
     address: "Main Road Rangwasa, Rau, Indore",
     upiId: "6260808658@upi"
@@ -732,7 +733,7 @@ function renderStudioCanvas() {
     ctx.font = '700 36px "Plus Jakarta Sans", sans-serif';
     ctx.letterSpacing = '2px';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText("📞 6260808658", targetWidth / 2, footerY + 48);
+    ctx.fillText("📞 6260808658 • 💬 WhatsApp: 9516482651", targetWidth / 2, footerY + 48);
 
     if (state.studio.addressStrip) {
       ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
@@ -812,7 +813,7 @@ New Stitching Masterpiece: *${title}* 🥻
 📞 Book an Appointment / Enquiries: 6260808658
 📸 Instagram: @NISHIS_CREATIONS
 
-DM us or WhatsApp directly on 6260808658 to book your order or design consultation! 🌸
+DM us or WhatsApp directly on 9516482651 to book your order or design consultation! 🌸
 
 #NishisCreations #BoutiqueIndore #IndoreBoutique #DesignerBlouse #LehengaCholi #BhagwanPoshak #KidsDress #CustomStitching #IndoreFashion #RauIndore`;
 
