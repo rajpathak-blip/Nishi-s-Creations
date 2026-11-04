@@ -1,5 +1,27 @@
 [
   {
+    "id": "prod-1793715395606",
+    "title": "Royal Madhubala",
+    "category": "Blouses",
+    "price": 400,
+    "fabric": "Pure silk with zari",
+    "description": "princess cut and padded finish",
+    "tags": [],
+    "media": [
+      {
+        "filename": "nishi-1793715395512-915596055.jpg",
+        "url": "/uploads/nishi-1793715395512-915596055.jpg",
+        "type": "image",
+        "originalName": "IMG20260522003913.jpg",
+        "size": 3505213
+      }
+    ],
+    "mediaType": "image",
+    "mediaUrl": "/uploads/nishi-1793715395512-915596055.jpg",
+    "isPublished": true,
+    "createdAt": "2026-11-03T14:16:35.607Z"
+  },
+  {
     "id": "prod-1",
     "title": "Royal Heritage Bridal Blouse",
     "category": "Blouses",
@@ -8,7 +30,12 @@
     "description": "Bespoke bridal blouse featuring exquisite handcrafted gold zardozi embroidery, intricate peacock sleeve motifs, padded fit with designer back neck cut.",
     "mediaType": "image",
     "mediaUrl": "/assets/blouse-sample.jpg",
-    "tags": ["Bridal", "Aari Work", "Maggam", "Custom Fit"],
+    "tags": [
+      "Bridal",
+      "Aari Work",
+      "Maggam",
+      "Custom Fit"
+    ],
     "isPublished": true,
     "createdAt": "2026-10-31T10:00:00.000Z"
   },
@@ -21,7 +48,12 @@
     "description": "16-kali royal flared lehenga with floral border motifs, paired with custom padded choli and scalloped organza dupatta with custom latkans.",
     "mediaType": "image",
     "mediaUrl": "/assets/lehenga-sample.jpg",
-    "tags": ["Lehenga", "Wedding Couture", "Full Flare", "Indore"],
+    "tags": [
+      "Lehenga",
+      "Wedding Couture",
+      "Full Flare",
+      "Indore"
+    ],
     "isPublished": true,
     "createdAt": "2026-10-31T10:05:00.000Z"
   },
@@ -34,7 +66,12 @@
     "description": "Handmade sacred vastra set for Laddu Gopal Ji including designer embroidered ghagra, matching patka, and pearl-studded mukut set.",
     "mediaType": "image",
     "mediaUrl": "/assets/poshak-sample.jpg",
-    "tags": ["Bhagwan Poshak", "Laddu Gopal", "Velvet", "Divine Vastra"],
+    "tags": [
+      "Bhagwan Poshak",
+      "Laddu Gopal",
+      "Velvet",
+      "Divine Vastra"
+    ],
     "isPublished": true,
     "createdAt": "2026-10-31T10:10:00.000Z"
   },
@@ -47,7 +84,11 @@
     "description": "Contemporary minimalist indo-western fusion ensemble with tailored palazzo and structured jacket blouse.",
     "mediaType": "image",
     "mediaUrl": "/assets/hero-banner.jpg",
-    "tags": ["Indo Western", "Reception", "Custom Stitching"],
+    "tags": [
+      "Indo Western",
+      "Reception",
+      "Custom Stitching"
+    ],
     "isPublished": true,
     "createdAt": "2026-10-31T10:15:00.000Z"
   }

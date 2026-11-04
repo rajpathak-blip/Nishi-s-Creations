@@ -59,9 +59,21 @@ function setupTabs() {
 }
 
 async function loadAllData() {
-  await fetchProducts();
-  await fetchInvoices();
-  await fetchSettings();
+  try {
+    await fetchProducts();
+  } catch (err) {
+    console.error('Error fetching products:', err);
+  }
+  try {
+    await fetchInvoices();
+  } catch (err) {
+    console.error('Error fetching invoices:', err);
+  }
+  try {
+    await fetchSettings();
+  } catch (err) {
+    console.error('Error fetching settings:', err);
+  }
 }
 
 // ================= 1. PRODUCTS & MEDIA MANAGER =================
@@ -731,6 +743,10 @@ function syncInvoicePreview() {
 }
 
 // ================= 4. ORDERS LEDGER =================
+function setupOrdersLedger() {
+  // Setup order ledger listeners if needed
+}
+
 async function fetchInvoices() {
   try {
     const res = await fetch('/api/invoices');

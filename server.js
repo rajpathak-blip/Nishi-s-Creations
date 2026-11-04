@@ -3,6 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
+const convert = require('heic-convert');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -177,7 +178,7 @@ const upload = multer({
   storage: storage,
   limits: { fileSize: 250 * 1024 * 1024 }, // 250MB for video files
   fileFilter: (req, file, cb) => {
-    const filetypes = /jpeg|jpg|png|webp|gif|mp4|webm|mov|mkv|avi|heic/;
+    const filetypes = /jpeg|jpg|png|webp|gif|mp4|webm|mov|mkv|avi|heic|heif/i;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/');
     if (mimetype || extname) {
@@ -186,6 +187,48 @@ const upload = multer({
     cb(new Error('Only images and videos are supported!'));
   }
 });
+
+// Helper: Process and auto-convert HEIC/HEIF files to standard JPEG for browser compatibility
+async function processUploadedFiles(files) {
+  if (!files || files.length === 0) return [];
+  const processed = [];
+
+  for (const file of files) {
+    const isVideo = file.mimetype.startsWith('video/') || /\.(mp4|webm|mov|mkv)$/i.test(file.originalname);
+    const isHeic = /\.(heic|heif)$/i.test(file.originalname) || /\.(heic|heif)$/i.test(file.filename) || file.mimetype.includes('heic') || file.mimetype.includes('heif');
+
+    let finalFilename = file.filename;
+    let finalUrl = `/uploads/${file.filename}`;
+
+    if (isHeic) {
+      try {
+        const inputBuffer = fs.readFileSync(file.path);
+        const outputBuffer = await convert({
+          buffer: inputBuffer,
+          format: 'JPEG',
+          quality: 0.92
+        });
+        const jpgFilename = file.filename.replace(/\.(heic|heif)$/i, '') + '.jpg';
+        const jpgPath = path.join(UPLOADS_DIR, jpgFilename);
+        fs.writeFileSync(jpgPath, outputBuffer);
+        finalFilename = jpgFilename;
+        finalUrl = `/uploads/${jpgFilename}`;
+        try { fs.unlinkSync(file.path); } catch (e) {}
+      } catch (err) {
+        console.error('HEIC conversion error:', err);
+      }
+    }
+
+    processed.push({
+      filename: finalFilename,
+      url: finalUrl,
+      type: isVideo ? 'video' : 'image',
+      originalName: file.originalname,
+      size: file.size
+    });
+  }
+  return processed;
+}
 
 // ================= API ROUTES =================
 
@@ -217,26 +260,13 @@ app.get('/api/products', (req, res) => {
 });
 
 // Products: Add Product with Uploaded Media
-app.post('/api/products', upload.array('media', 10), (req, res) => {
+app.post('/api/products', upload.array('media', 10), async (req, res) => {
   try {
     const products = readJson(PRODUCTS_FILE, []);
     const { title, category, price, fabric, description, tags, isPublished } = req.body;
 
     const files = req.files || [];
-    let mediaItems = [];
-
-    if (files.length > 0) {
-      mediaItems = files.map(file => {
-        const isVideo = file.mimetype.startsWith('video/') || /\.(mp4|webm|mov|mkv)$/i.test(file.originalname);
-        return {
-          filename: file.filename,
-          url: `/uploads/${file.filename}`,
-          type: isVideo ? 'video' : 'image',
-          originalName: file.originalname,
-          size: file.size
-        };
-      });
-    }
+    const mediaItems = await processUploadedFiles(files);
 
     const newProduct = {
       id: 'prod-' + Date.now(),
@@ -264,7 +294,7 @@ app.post('/api/products', upload.array('media', 10), (req, res) => {
 });
 
 // Products: Update / Edit Product
-app.put('/api/products/:id', upload.array('media', 10), (req, res) => {
+app.put('/api/products/:id', upload.array('media', 10), async (req, res) => {
   try {
     const products = readJson(PRODUCTS_FILE, []);
     const index = products.findIndex(p => p.id === req.params.id);
@@ -282,16 +312,7 @@ app.put('/api/products/:id', upload.array('media', 10), (req, res) => {
 
     const files = req.files || [];
     if (files.length > 0) {
-      const newMedia = files.map(file => {
-        const isVideo = file.mimetype.startsWith('video/') || /\.(mp4|webm|mov|mkv)$/i.test(file.originalname);
-        return {
-          filename: file.filename,
-          url: `/uploads/${file.filename}`,
-          type: isVideo ? 'video' : 'image',
-          originalName: file.originalname,
-          size: file.size
-        };
-      });
+      const newMedia = await processUploadedFiles(files);
       mediaItems = [...newMedia, ...mediaItems];
       mediaType = newMedia[0].type;
       finalMediaUrl = newMedia[0].url;
@@ -457,7 +478,7 @@ function getLocalNetworkIp() {
 }
 
 // Cloudflare Tunnel URL
-const CLOUDFLARE_TUNNEL_URL = 'https://speaks-conditional-honey-loan.trycloudflare.com';
+const CLOUDFLARE_TUNNEL_URL = 'https://gmbh-grows-slip-posted.trycloudflare.com';
 
 app.get('/api/network-info', (req, res) => {
   const localIp = getLocalNetworkIp();
